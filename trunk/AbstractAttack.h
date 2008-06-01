@@ -27,8 +27,7 @@ class AbstractAttack : public QThread, public QList<QByteArray>
 
 public:
 
-AbstractAttack();
-AbstractAttack(AbstractAlgo * algo);
+AbstractAttack(AbstractAlgo * algo = NULL);
 virtual ~AbstractAttack();
 
 
@@ -76,6 +75,7 @@ void setAlgo(AbstractAlgo * algo);
  */
 QByteArray getPlain(const QByteArray & hash) const;
 
+void stopAttack();
 
 QList<QByteArray> notFound() const;
 
@@ -86,6 +86,8 @@ signals:
     void advancementChanged(int advancement);
 
 protected:
+    // FIXME[cleaning/performance]: should use QThread and QEventLoop instead
+    bool stop; // stop the loop
     int advancement;
     AbstractAlgo* algo;
 

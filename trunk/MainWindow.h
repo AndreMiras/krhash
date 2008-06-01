@@ -35,7 +35,15 @@ private slots:
     void openHashFile();
     void open();
     void openConfigAttackDialog();
-    void startCracking();
+
+/*
+ * TODO:
+ * Change color of uncracked hash
+ * Change status bar as well
+ */
+    void attackFinished();
+//    void toggleCrackingButtonText();
+    void toggleCracking();
     void appendHash();
     void selectMode(int);
     void createAttack();
@@ -61,7 +69,7 @@ private:
     QAction *modeBrutForceAct;
     QAction *modeDictionaryAct;
 
-    QPushButton *startCrackingButton;
+    QPushButton *toggleCrackingButton;
     QPushButton *addHashButton;
     QLabel *infoLabel;
     QLineEdit *addHashLineEdit;

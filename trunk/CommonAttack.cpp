@@ -14,7 +14,8 @@ void CommonAttack::run()
 {
     std::cout << "CommonAttack::run()" << std::endl;
     int cpt = currentString->total();
-    while (!this->empty() && cpt > 0)
+    // FIXME[cleaning/performances]: should avoid stop test and use QThread properly instead
+    while (!this->empty() && cpt > 0 && !stop)
     {
         if(this->indexOfHash(algo->hash(++*currentString)) != -1)
         {

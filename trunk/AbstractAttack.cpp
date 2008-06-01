@@ -1,15 +1,11 @@
 #include "AbstractAttack.h"
 
-AbstractAttack::AbstractAttack() : QList<QByteArray>()
-{
-    advancement = 0;
-}
-
 
 AbstractAttack::AbstractAttack(AbstractAlgo * algo) : QList<QByteArray>()
 {
     this->setAlgo(algo);
     advancement = 0;
+    stop = false;
 }
 
 AbstractAttack::~AbstractAttack()
@@ -74,6 +70,11 @@ void AbstractAttack::showFound() const
 void AbstractAttack::setAlgo(AbstractAlgo * algo)
 {
     this->algo = algo;
+}
+
+void AbstractAttack::stopAttack()
+{
+    stop = true;
 }
 
 QByteArray AbstractAttack::getPlain(const QByteArray & hash) const
