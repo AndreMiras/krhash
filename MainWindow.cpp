@@ -36,11 +36,10 @@ MainWindow::MainWindow()
     mainLayout->addWidget(addSingleHashGroupBox, 0, 0, 1, 1);
     mainLayout->addWidget(hashListWidget, 1, 0, 3, 1);
     mainLayout->addWidget(infoWidget, 1, 1, 3, 2);
-    mainLayout->addWidget(startCrackingButton, 4, 1, 1, 2);
+    mainLayout->addWidget(toggleCrackingButton, 4, 1, 1, 2);
 /*
     mainLayout->addWidget(hashListWidget, 1, 0, 4, 1);
     mainLayout->addWidget(infoWidget, 1, 1, 3, 2);
-    mainLayout->addWidget(startCrackingButton, 4, 1, 1, 2);
 */
 //    mainLayout->setColumnStretch(1, 10);
 //    mainLayout->setColumnStretch(1, 10);
@@ -107,15 +106,51 @@ void MainWindow::openConfigAttackDialog()
     configAttackDialog->exec();
 }
 
-void MainWindow::startCracking()
+void MainWindow::attackFinished()
 {
+        toggleCrackingButton->setText("Start");
+}
+
+// FIXME[cleaning]: not needed anymore
 /*
- * recreate Attack to create a new MetaString if not MetaString2 (for instance) will
- * resume its state in the dictionary instead of restarting from the begining
- *
- */
-    createAttack();
-    attack->start();
+void MainWindow::toggleCrackingButtonText()
+{
+    if(!attack->isRunning())
+    {
+        toggleCrackingButton->setText("Stop");
+    }
+    else
+    {
+        toggleCrackingButton->setText("Stop");
+    }
+}
+*/
+
+
+void MainWindow::toggleCracking()
+{
+
+    if(!attack->isRunning())
+    {
+    /*
+     * recreate Attack to create a new MetaString if not MetaString2 (for instance) will
+     * resume its state in the dictionary instead of restarting from the begining
+     *
+     */
+        createAttack();
+        // TODO: should be done with signal done from QThread
+//        toggleCrackingButton->setText("Stop");
+        attack->start();
+    }
+    else
+    {
+        std::cout << "Stop cracking" << std::endl;
+//        toggleCrackingButton->setText("Start");
+        // FIXME[cleaning]: use quit() and QEventLoop instead
+        // attack->quit();
+        // attack->terminate();
+        attack->stopAttack();
+    }
 }
 
 void MainWindow::appendHash()
@@ -131,7 +166,8 @@ void MainWindow::appendHash()
 
 void MainWindow::createConnections()
 {
-    connect(startCrackingButton, SIGNAL(clicked()), this, SLOT(startCracking()));
+    connect(toggleCrackingButton, SIGNAL(clicked()), this, SLOT(toggleCracking()));
+    connect(attack, SIGNAL(finished()), this, SLOT(attackFinished()));
     connect(addHashLineEdit, SIGNAL(returnPressed()), this, SLOT(appendHash()));
     connect(addHashButton, SIGNAL(clicked()), this, SLOT(appendHash()));
     connect(hashListWidget, SIGNAL(hashAdded()), infoWidget, SLOT(addHash()));
@@ -198,7 +234,7 @@ void MainWindow::createMenus()
 {
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(openHashFileAct);
-    fileMenu->addAction(openDictionaryFileAct);
+//    fileMenu->addAction(openDictionaryFileAct);
     fileMenu->addAction(exitAct);
 
     configMenu = menuBar()->addMenu(tr("&Config"));
@@ -223,10 +259,12 @@ void MainWindow::createActions()
     openHashFileAct->setStatusTip(tr("Open an existing file"));
     connect(openHashFileAct, SIGNAL(triggered()), this, SLOT(openHashFile()));
 
+/*
     openDictionaryFileAct = new QAction(tr("&Open dictionary file..."), this);
     openDictionaryFileAct->setShortcut(tr("Ctrl+O"));
     openDictionaryFileAct->setStatusTip(tr("Open an existing file"));
     connect(openDictionaryFileAct, SIGNAL(triggered()), this, SLOT(open()));
+*/
 
     exitAct = new QAction(tr("E&xit"), this);
     exitAct->setShortcut(tr("Ctrl+Q"));
@@ -269,10 +307,9 @@ void MainWindow::createAddSingleHashLayout()
 
 void MainWindow::createPushButtons()
 {
-    startCrackingButton = new QPushButton(tr("&Start"));
-    startCrackingButton->setDefault(true);
-    //quitButton = new QPushButton(tr("Quit"));
-    //quitButton->setAutoDefault(false);    
+    toggleCrackingButton = new QPushButton(tr("&Start"));
+    // quitButton = new QPushButton(tr("Quit"));
+    // quitButton->setAutoDefault(false);    
 }
 
 

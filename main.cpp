@@ -1,5 +1,4 @@
 /*
- * Auteur:  Brayan
  * Version: 0.1pre
  * Date:    12/03/2008
  * Licence: GPL
