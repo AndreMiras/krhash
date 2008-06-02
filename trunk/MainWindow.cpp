@@ -19,12 +19,10 @@ MainWindow::MainWindow()
     hashListWidget = new HashListWidget(this);
 
     infoWidget = new InfoWidget(this);
-    std::cout << "Null ?" << std::endl;
     configAttackDialog = new ConfigAttackDialog(this);
 
 //    infoWidget->setFixedSize(200, 200);
 
-    std::cout << "Null ?" << std::endl;
     createPushButtons();
     createAddSingleHashLayout();
     createConnections();
@@ -129,7 +127,6 @@ void MainWindow::toggleCrackingButtonText()
 
 void MainWindow::toggleCracking()
 {
-
     if(!attack->isRunning())
     {
     /*
@@ -138,14 +135,13 @@ void MainWindow::toggleCracking()
      *
      */
         createAttack();
-        // TODO: should be done with signal done from QThread
-//        toggleCrackingButton->setText("Stop");
+        toggleCrackingButton->setText("Stop");
         attack->start();
     }
     else
     {
         std::cout << "Stop cracking" << std::endl;
-//        toggleCrackingButton->setText("Start");
+        toggleCrackingButton->setText("Start");
         // FIXME[cleaning]: use quit() and QEventLoop instead
         // attack->quit();
         // attack->terminate();
@@ -167,7 +163,6 @@ void MainWindow::appendHash()
 void MainWindow::createConnections()
 {
     connect(toggleCrackingButton, SIGNAL(clicked()), this, SLOT(toggleCracking()));
-    connect(attack, SIGNAL(finished()), this, SLOT(attackFinished()));
     connect(addHashLineEdit, SIGNAL(returnPressed()), this, SLOT(appendHash()));
     connect(addHashButton, SIGNAL(clicked()), this, SLOT(appendHash()));
     connect(hashListWidget, SIGNAL(hashAdded()), infoWidget, SLOT(addHash()));
@@ -198,6 +193,8 @@ void MainWindow::createAttack()
 
     if (algoSett == "Md5")
         algo = new AlgoMd5();
+    else if (algoSett == "Md4")
+        algo = new AlgoMd4();
     else if (algoSett == "Double Md5")
         algo = NULL;
     else
@@ -227,6 +224,7 @@ void MainWindow::createAttack()
     connect(attack, SIGNAL(hashFound()), infoWidget, SLOT(hashFound()));
     connect(attack, SIGNAL(hashFound(QByteArray)), hashListWidget, SLOT(markHashFound(QByteArray)));
     connect(attack, SIGNAL(advancementChanged(int)), infoWidget, SLOT(setAdvancement(int)));
+    connect(attack, SIGNAL(finished()), this, SLOT(attackFinished()));
 }
 
 
@@ -239,16 +237,6 @@ void MainWindow::createMenus()
 
     configMenu = menuBar()->addMenu(tr("&Config"));
     configMenu->addAction(configAttackAct);
-
-/*
-    algoMenu = menuBar()->addMenu(tr("&Algorithms"));
-    algoMenu->addAction(algoMd5Act);
-    algoMenu->addAction(algoDoubleMd5Act);
-
-    modeMenu = menuBar()->addMenu(tr("&Modes"));
-    modeMenu->addAction(modeBrutForceAct);
-    modeMenu->addAction(modeDictionaryAct);
-*/
 }
 
 
@@ -273,18 +261,6 @@ void MainWindow::createActions()
 
     configAttackAct = new QAction(tr("Attack"), this);
     connect(configAttackAct, SIGNAL(triggered()), this, SLOT(openConfigAttackDialog()));
-
-    algoMd5Act = new QAction(tr("Md5"), this);
-    connect(algoMd5Act, SIGNAL(triggered()), this, SLOT(open()));
-
-    algoDoubleMd5Act = new QAction(tr("DoubleMd5"), this);
-    connect(algoDoubleMd5Act, SIGNAL(triggered()), this, SLOT(open()));
-
-    modeBrutForceAct = new QAction(tr("Brut force"), this);
-    connect(modeBrutForceAct, SIGNAL(triggered()), this, SLOT(open()));
-
-    modeDictionaryAct = new QAction(tr("Dictionary"), this);
-    connect(modeDictionaryAct, SIGNAL(triggered()), this, SLOT(open()));
 }
 
 void MainWindow::createAddSingleHashLayout()

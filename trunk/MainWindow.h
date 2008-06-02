@@ -12,6 +12,8 @@
 
 #include "AbstractAttack.h"
 #include "AbstractAlgo.h"
+#include "AlgoMd4.h"
+#include "AlgoMd5.h"
 #include "BrutForceAttack.h"
 #include "DictionaryAttack.h"
 #include "HashListWidget.h"
@@ -64,9 +66,6 @@ private:
     QAction *openDictionaryFileAct;
     QAction *exitAct;
     QAction *configAttackAct;
-    QAction *algoMd5Act;
-    QAction *algoDoubleMd5Act;
-    QAction *modeBrutForceAct;
     QAction *modeDictionaryAct;
 
     QPushButton *toggleCrackingButton;

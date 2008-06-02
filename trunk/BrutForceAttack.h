@@ -13,7 +13,6 @@
 
 #include "CommonAttack.h"
 #include "AbstractAlgo.h"
-#include "AlgoMd5.h"
 #include "MetaString.h"
 
 #include <iostream>
@@ -86,10 +85,6 @@ private:
     // what the best way to param like path to dic or charset or even algo?
     // should use the QSettings in each class
     void init();
-    // Dynamique linkage speed diff test
-    inline QByteArray hash(const QByteArray & data) const
-    // inline QByteArray hash(const char * data) const
-    { return NULL; return QCryptographicHash::hash(data, QCryptographicHash::Md5); }
 
 //    AbstractAlgo *algo;
     QString charset;
