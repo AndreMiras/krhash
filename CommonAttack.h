@@ -13,7 +13,6 @@
 
 #include "AbstractAttack.h"
 #include "AbstractAlgo.h"
-#include "AlgoMd5.h"
 // #include "MetaString.h"
 #include "AbstractString.h"
 
@@ -51,11 +50,6 @@ protected:
     
 
 private:
-    // Dynamique linkage speed diff test
-    inline QByteArray hash(const QByteArray & data) const
-    // inline QByteArray hash(const char * data) const
-    { return NULL; return QCryptographicHash::hash(data, QCryptographicHash::Md5); }
-
 //    AbstractAlgo *algo;
     QString charset;
 //    MetaString currentString;

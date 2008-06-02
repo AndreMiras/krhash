@@ -1,8 +1,9 @@
 /*
+ * TODO:
+ *      - use cryptdll.dll on windows
  *
- *  READ:
+ * READ:
  *      - http://wiki.qtcentre.org/index.php?title=Cryptography
- *      - what's faster? using static method or create object ?
  */
 
 
@@ -13,21 +14,20 @@
 
 #include <QByteArray>
 #include <QString>
-#include <QCryptographicHash>
 
 #include <QTime>
+#include <QCryptographicHash>
 
+#ifdef _WIN32
+// http://source.winehq.org/source/dlls/advapi32/crypt_md5.c
+// http://msdn.microsoft.com/en-us/library/bb432605(VS.85).aspx
+// #include <QCryptographicHash>
+// #include <windows.h>
+//#include <wincrypt.h>
+#else
 #include <openssl/md5.h>
-/*
-#include <cryptopp/md5.h>
-#include <cryptopp/filters.h>
-#include <cryptopp/files.h>
-#include <cryptopp/hex.h>
-using namespace CryptoPP;
-using namespace std;
-*/
+#endif
 
-//#include "md5.h"
 #include <iostream>
 
 
@@ -67,7 +67,7 @@ public:
 
     /*
      * TODO:    Use Qt provided method
-     *          And finish it :]
+     *          imrpove that tests
      */
     virtual bool isValid(const QByteArray & hash) const;
 

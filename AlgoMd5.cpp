@@ -12,7 +12,6 @@ public:
 
 AlgoMd5::AlgoMd5() : AbstractAlgo() 
 {
-    std::cout << "AlgoMd5 Constructor: " << std::endl;
     ht = new HashType;
     MD5_Init(&ht->md5Context);
     hashResult.resize(16); // Takes a while, change it after
@@ -37,10 +36,6 @@ QByteArray AlgoMd5::hash(const QByteArray & data) const
 }
 */
 
-/*
- * Note:    have a look on qcryptographichash.cpp
- *          can avoid 'QCryptographicHash::addData' switch case to improve speed
-*/
 QByteArray AlgoMd5::hash(const QByteArray & data) const
 {
     MD5_Init(&ht->md5Context);
@@ -64,6 +59,5 @@ bool AlgoMd5::isValid(const QByteArray & hash) const
         return FALSE;
     return TRUE;
 }
-
 
 

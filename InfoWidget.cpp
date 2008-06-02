@@ -23,7 +23,6 @@ void InfoWidget::createInfoWidget()
 //    infoGroupBox->setTitle("&Infos");
     algoLabel = new QLabel(tr("Algo:"));
     algoValueLabel = new QLabel();
-//    algoValueLabel->setText("0%");
     methodLabel = new QLabel(tr("Method:"));
     methodValueLabel = new QLabel();
     totalHashLabel = new QLabel(tr("Total hash:"));
@@ -64,7 +63,7 @@ QSize InfoWidget::sizeHint()
 
 void InfoWidget::updateView()
 {
-    QSettings settings("u54", "Krack");
+    QSettings settings("u54", "KrHash");
     QString algoSett(settings.value("Algo", "None").toString());
     algoValueLabel->setText(algoSett);
     QString methodSett(settings.value("Method", "None").toString());

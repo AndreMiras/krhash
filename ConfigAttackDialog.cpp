@@ -5,18 +5,14 @@
 
 ConfigAttackDialog::ConfigAttackDialog(QWidget* parent) : QDialog(parent)
 {
-//    configMethodWidget = NULL;
-    std::cout << "ConfigAttackDialog::Construct()" << std::endl;
     configMethodWidgetList = new QList<ConfigAbstractAttackWidget*>();
     createConfigAttackDialog();
     createConnections();
-    std::cout << "ConfigAttackDialog::Construct() End" << std::endl;
 }
 
 
 void ConfigAttackDialog::accept()
 {
-    std::cout << "Accept()" << std::endl;
     writeSettings();
 
 // FIXME: good way ??
@@ -43,6 +39,7 @@ void ConfigAttackDialog::createConfigAttackDialog()
     methodLabel = new QLabel(tr("Method:"));
 
     algoCombobox = new QComboBox();
+    algoCombobox->addItem(tr("Md4"));
     algoCombobox->addItem(tr("Md5"));
     algoCombobox->addItem(tr("Double Md5"));
     algoCombobox->setCurrentIndex
@@ -107,7 +104,9 @@ void ConfigAttackDialog::createConfigAttackDialog()
 
 void ConfigAttackDialog::createConnections()
 {
-    connect(algoCombobox, SIGNAL(currentIndexChanged(int)), this, SLOT(setAlgo(int)));
+
+// FIXME[cleaning]: not needed anymore
+//    connect(algoCombobox, SIGNAL(currentIndexChanged(int)), this, SLOT(setAlgo(int)));
 //    connect(methodCombobox, SIGNAL(currentIndexChanged(int)), this, SLOT(setMethod(int)));
     connect(methodCombobox, SIGNAL(activated(int)), stackedWidget, SLOT(setCurrentIndex(int)));
     connect(acceptButton, SIGNAL(clicked()), this, SLOT(accept()));

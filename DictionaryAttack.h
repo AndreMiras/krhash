@@ -19,7 +19,6 @@
 
 #include "CommonAttack.h"
 #include "AbstractAlgo.h"
-#include "AlgoMd5.h"
 #include "MetaString2.h"
 
 #include <iostream>
