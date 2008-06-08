@@ -72,6 +72,7 @@ private:
     QPushButton *addHashButton;
     QLabel *infoLabel;
     QLineEdit *addHashLineEdit;
+    QTime* elaspedTime;
 
     QGroupBox* addSingleHashGroupBox;
 

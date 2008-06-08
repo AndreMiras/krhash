@@ -84,6 +84,7 @@ signals:
     void hashFound(QByteArray hash);
     void hashFound();
     void advancementChanged(int advancement);
+    void hashRateChanged(int rate);
 
 protected:
     // FIXME[cleaning/performance]: should use QThread and QEventLoop instead

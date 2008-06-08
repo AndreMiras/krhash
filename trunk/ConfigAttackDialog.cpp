@@ -53,6 +53,7 @@ void ConfigAttackDialog::createConfigAttackDialog()
     methodCombobox->addItem(tr("*Vuln* Based"));
     methodCombobox->setCurrentIndex
                     (
+                        // FIXME translating
                        methodCombobox->findText(settings.value("Method", "Brut Force").toString())
                     );
 
