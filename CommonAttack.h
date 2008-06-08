@@ -21,6 +21,7 @@
 #include <QString>
 #include <QList>
 #include <QByteArray>
+#include <QTime>
 
 class CommonAttack : public AbstractAttack
 {

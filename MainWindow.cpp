@@ -7,7 +7,7 @@ MainWindow::MainWindow()
     this->attack = NULL;
     this->algo = NULL;
 
-
+    elaspedTime = new QTime();
     QWidget *widget = new QWidget;
     setCentralWidget(widget);
 
@@ -106,24 +106,9 @@ void MainWindow::openConfigAttackDialog()
 
 void MainWindow::attackFinished()
 {
-        toggleCrackingButton->setText("Start");
+    toggleCrackingButton->setText(tr("Start"));
+    qDebug("Time elapsed: %i ms", elaspedTime->elapsed());
 }
-
-// FIXME[cleaning]: not needed anymore
-/*
-void MainWindow::toggleCrackingButtonText()
-{
-    if(!attack->isRunning())
-    {
-        toggleCrackingButton->setText("Stop");
-    }
-    else
-    {
-        toggleCrackingButton->setText("Stop");
-    }
-}
-*/
-
 
 void MainWindow::toggleCracking()
 {
@@ -135,13 +120,14 @@ void MainWindow::toggleCracking()
      *
      */
         createAttack();
-        toggleCrackingButton->setText("Stop");
+        toggleCrackingButton->setText(tr("Stop"));
+        elaspedTime->restart();
         attack->start();
     }
     else
     {
         std::cout << "Stop cracking" << std::endl;
-        toggleCrackingButton->setText("Start");
+        toggleCrackingButton->setText(tr("Start"));
         // FIXME[cleaning]: use quit() and QEventLoop instead
         // attack->quit();
         // attack->terminate();
@@ -151,13 +137,8 @@ void MainWindow::toggleCracking()
 
 void MainWindow::appendHash()
 {
-    std::cout << "MainWindow::appendHash()" << std::endl;
     if (!addHashLineEdit->text().isEmpty())
-    { 
-        std::cout << "MainWindow::appendHash() Not Empty: " << hashListWidget << std::endl;
         hashListWidget->addHash(addHashLineEdit->text().toAscii());
-    }
-    std::cout << "MainWindow::appendHash() [End]" << std::endl;
 }
 
 void MainWindow::createConnections()
@@ -198,7 +179,7 @@ void MainWindow::createAttack()
     else if (algoSett == "Double Md5")
         algo = NULL;
     else
-        qWarning("Unrecognized Method Setting");
+        qWarning("Unrecognized Algo Setting");
 
     attack->setAlgo(algo);
     hashListWidget->setAttack(attack);
@@ -224,6 +205,7 @@ void MainWindow::createAttack()
     connect(attack, SIGNAL(hashFound()), infoWidget, SLOT(hashFound()));
     connect(attack, SIGNAL(hashFound(QByteArray)), hashListWidget, SLOT(markHashFound(QByteArray)));
     connect(attack, SIGNAL(advancementChanged(int)), infoWidget, SLOT(setAdvancement(int)));
+    connect(attack, SIGNAL(hashRateChanged(int)), infoWidget, SLOT(setHashRate(int)));
     connect(attack, SIGNAL(finished()), this, SLOT(attackFinished()));
 }
 

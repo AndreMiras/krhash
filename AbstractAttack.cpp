@@ -39,10 +39,11 @@ int AbstractAttack::indexOfHash(const QByteArray & hash) const
 
 void AbstractAttack::addFoundHash(const QString & plainText)
 {
-    this->removeHash(algo->hash(plainText.toAscii()));
+    // FIXME[cleaning]: warning: taking address of temporary
+    this->removeHash(algo->hash(&plainText.toAscii()));
 //    foundHash.append(plainText);
-    foundHash.insert(algo->hashHumanReadable(plainText.toAscii()), plainText);
-    emit hashFound(algo->hashHumanReadable(plainText.toAscii()));
+    foundHash.insert(algo->hashHumanReadable(&plainText.toAscii()), plainText);
+    emit hashFound(algo->hashHumanReadable(&plainText.toAscii()));
     emit hashFound();
 }
 

@@ -18,15 +18,15 @@
 #include <QTime>
 #include <QCryptographicHash>
 
-#ifdef _WIN32
+// #ifdef _WIN32
 // http://source.winehq.org/source/dlls/advapi32/crypt_md4.c
 // http://msdn.microsoft.com/en-us/library/bb432605(VS.85).aspx
 // #include <QCryptographicHash>
 // #include <windows.h>
 //#include <wincrypt.h>
-#else
+// #else
 #include <openssl/md4.h>
-#endif
+// #endif
 
 #include <iostream>
 
@@ -39,22 +39,13 @@ class AlgoMd4 : public AbstractAlgo
 public:
     AlgoMd4();
 
-    /*
-     * Note:    This method has been remade 'cause loosing time in Qt method
-     *          (switch case)
-     * Time:    3848 (-3732) (28790448 tested) for MD4_Init() 
-     *          4597 (-3732) (28790448 tested) for MD4_Update()
-     *          15675 (-3732) (28790448 tested) for MD4_Final()
-     *
-     *
-     */
-    QByteArray hash(const QByteArray & data) const;
+    QByteArray hash(const QByteArray* data) const;
     // inline QByteArray hash(const QByteArray & data) const
     // { return QCryptographicHash::hash(data, QCryptographicHash::Md4); }
 
     // unsigned char * AlgoMd4::hashSpeed(const QByteArray & data) const;
 
-    inline QByteArray hashHumanReadable(const QByteArray & data) const
+    inline QByteArray hashHumanReadable(const QByteArray* data) const
     { return this->hash(data).toHex(); }
     // { return data.toHex(); }
     
@@ -79,7 +70,6 @@ private:
    // QCryptographicHash hashResult;
     QByteArray hashResult;
     HashType *ht;
-    // unsigned char * testResult; // convert test
 
 };
 

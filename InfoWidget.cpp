@@ -27,10 +27,11 @@ void InfoWidget::createInfoWidget()
     methodValueLabel = new QLabel();
     totalHashLabel = new QLabel(tr("Total hash:"));
     totalHashValueLabel = new QLabel("0");
-//    totalHashValueLabel->setNum(numbOfHash);
     foundHashLabel = new QLabel(tr("Found hash:"));
     foundHashValueLabel = new QLabel("0");
-//    foundHashValueLabel->setNum(numbOfHashFound);
+    hashRateLabel = new QLabel(tr("Hash rate:"));
+    hashRateValueLabel = new QLabel();
+    hashRateValueLabel->setText("0 h/s");
     advancementLabel = new QLabel(tr("Advancement:"));
     advancementValueLabel = new QLabel();
     advancementValueLabel->setText("0%");
@@ -44,8 +45,10 @@ void InfoWidget::createInfoWidget()
     vbox->addWidget(totalHashValueLabel, 2, 1);
     vbox->addWidget(foundHashLabel, 3, 0);
     vbox->addWidget(foundHashValueLabel, 3, 1);
-    vbox->addWidget(advancementLabel, 4, 0);
-    vbox->addWidget(advancementValueLabel, 4, 1);
+    vbox->addWidget(hashRateLabel, 4, 0);
+    vbox->addWidget(hashRateValueLabel, 4, 1);
+    vbox->addWidget(advancementLabel, 5, 0);
+    vbox->addWidget(advancementValueLabel, 5, 1);
     infoGroupBox->setLayout(vbox);
 //    infoGroupBox->setFixedSize(QSize(300, 100));
 
@@ -83,9 +86,11 @@ void InfoWidget::hashFound()
 
 void InfoWidget::setAdvancement(int advancement)
 {
-    advancementValueLabel->setNum(advancement);
-//    advancementValueLabel->setText(advancement + "%");
     advancementValueLabel->setText((QString("%1%").arg(advancement)));
-//    doubleLabel->setText(QString("$%1").arg(d));
+}
+
+void InfoWidget::setHashRate(int rate)
+{
+    hashRateValueLabel->setText((QString("%1 h/s").arg(rate)));
 }
 

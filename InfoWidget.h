@@ -33,6 +33,7 @@ public slots:
     void addHash();
     void hashFound();
     void setAdvancement(int advancement);
+    void setHashRate(int rate);
 
 private:
     int numbOfHash;
@@ -49,6 +50,8 @@ private:
     QLabel* totalHashValueLabel;
     QLabel* foundHashLabel;
     QLabel* foundHashValueLabel;
+    QLabel* hashRateLabel;
+    QLabel* hashRateValueLabel;
     QLabel* advancementLabel;
     QLabel* advancementValueLabel;
 
