@@ -8,14 +8,15 @@ AbstractString::AbstractString() : QByteArray()
 }
 
 
-// FIXME: const QByteArray, why a char * here? :S
+/*
 AbstractString::AbstractString(const char * str) : QByteArray(str)
 {
 //    this->setup(str);
     computedTotal = -1;
 }
+*/
 
-AbstractString::AbstractString(const QByteArray & other) : QByteArray(other) { }
+// AbstractString::AbstractString(const QByteArray & other) : QByteArray(other) { }
 
 
 AbstractString::~AbstractString()

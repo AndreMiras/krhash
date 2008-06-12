@@ -22,10 +22,8 @@ void CommonAttack::run()
     // FIXME[cleaning/performances]: should avoid stop test and use QThread properly instead
     while (!this->empty() && cpt > 0 && !stop)
     {
-        if(this->indexOfHash(algo->hash(&++*currentString)) != -1)
-        {
+        if(this->contains(algo->hash(&++*currentString)))
             this->addFoundHash(QString(*currentString));
-        }
 
         // FIXME[perfance]: division takes a lot of time
         // emit takes as well but it's just called 10 times

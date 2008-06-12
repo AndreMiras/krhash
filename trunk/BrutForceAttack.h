@@ -34,16 +34,6 @@ public:
 //    setCharset();
 
     /*
-     * TODO:    - Return value?
-     *          - Add found hash in a List which is accessible by the interface
-     * NOTE:    Could release signal/emit each hash broken
-     *
-     */
-    // void run();
-    // void stop();
-
-    /*
-     * 
      * Action:  is this hash valid? if so, then add it
      * TODO:    verify if added already
      * 
