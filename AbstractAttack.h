@@ -17,11 +17,12 @@
 #include <QThread>
 #include <QString>
 #include <QList>
+#include <QSet>
 #include <QHash>
 #include <QByteArray>
 
 
-class AbstractAttack : public QThread, public QList<QByteArray>
+class AbstractAttack : public QThread, public QSet<QByteArray>
 {
     Q_OBJECT
 
@@ -55,7 +56,7 @@ void addHash(const QList<QByteArray> & hashList);
  * Time:    724ms (28790448 tested) 
  */
 inline void removeHash(const QByteArray & hash)
-{ this->removeAt(this->indexOfHash(hash)); }
+{ this->remove(hash); }
 
 /*
  * Note:    For debugging purpose
@@ -71,7 +72,7 @@ void setAlgo(AbstractAlgo * algo);
 
 /*
  * Return the cracked plain text value of the hash if exist (bug else :p)
- * FIXME:   should be virtual (pure ? -> not ...)
+ * FIXME:   should it be virtual ?
  */
 QByteArray getPlain(const QByteArray & hash) const;
 
@@ -94,22 +95,6 @@ protected:
 
 
     virtual void run() = 0;
-
-    /*
-     *
-     * Result:  index of hash or -1 if not exist
-     *
-     */
-    int indexOfHash(const QByteArray & hash) const;
-
-    /*
-     * Could be called when trying to add a hash as well
-     * (a hash which is already existing cannot be added)
-     */
-    inline bool containsHash(const QByteArray & hash) const
-    { return (this->indexOfHash(hash) != -1); }
-
-    
 
     QByteArray text; // debugging speed
     char * hTest; // debugging speed

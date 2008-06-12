@@ -172,10 +172,19 @@ void MainWindow::createAttack()
     else
         qWarning("Unrecognized Method Setting");
 
+    /*
+     * FIXME[cleaning]: should define algo once in some file
+     *
+     *
+     *
+     *
+     */
     if (algoSett == "Md5")
         algo = new AlgoMd5();
     else if (algoSett == "Md4")
         algo = new AlgoMd4();
+    else if (algoSett == "Sha")
+        algo = new AlgoSha1();
     else if (algoSett == "Double Md5")
         algo = NULL;
     else
@@ -253,7 +262,7 @@ void MainWindow::createAddSingleHashLayout()
     addHashLineEdit = new QLineEdit();
     addHashLineEdit->setFixedWidth(250);
     // testing purpose
-    addHashLineEdit->setText("df5ea29924d39c3be8785734f13169c6"); // blabla
+//    addHashLineEdit->setText("df5ea29924d39c3be8785734f13169c6"); // blabla
     addHashButton = new QPushButton(tr("&Add"));
 
     layout->addWidget(addHashLineEdit);  

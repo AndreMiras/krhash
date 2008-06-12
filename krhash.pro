@@ -6,13 +6,12 @@ TEMPLATE = app
 TARGET = 
 DEPENDPATH += .
 INCLUDEPATH += .
-# -lpthread not needed anymore
-LIBS += -lssl -lpthread
+# Windows static compilation
+# LIBS += -lQtGui -lQtCore -lssl -lole32 -luuid -lwsock32 -lgdi32 -lwinspool -lcomdlg32 -limm32
+# LIBS += -leay32
+LIBS += -lssl
 
 # Input
-HEADERS += MainWindow.h AbstractAlgo.h AlgoMd5.h AlgoMd4.h AbstractAttack.h BrutForceAttack.h MetaString.h HashListWidget.h CommonAttack.h DictionaryAttack.h MetaString2.h AbstractString.h InfoWidget.h ConfigAttackDialog.h ConfigBrutForceWidget.h ConfigDictionaryWidget.h ConfigAbstractAttackWidget.h
-SOURCES += main.cpp MainWindow.cpp AbstractAlgo.cpp AlgoMd5.cpp AlgoMd4.cpp AbstractAttack.cpp BrutForceAttack.cpp MetaString.cpp HashListWidget.cpp CommonAttack.cpp DictionaryAttack.cpp MetaString2.cpp AbstractString.cpp InfoWidget.cpp ConfigBrutForceWidget.cpp ConfigAttackDialog.cpp ConfigDictionaryWidget.cpp ConfigAbstractAttackWidget.cpp
-
-# LIBS += mingw32/lib/libssl.a
-# INCLUDEPATH += mingw32/include
+HEADERS += MainWindow.h AbstractAlgo.h AlgoMd5.h AlgoMd4.h AlgoSha1.h AbstractAttack.h BrutForceAttack.h MetaString.h HashListWidget.h CommonAttack.h DictionaryAttack.h MetaString2.h AbstractString.h InfoWidget.h ConfigAttackDialog.h ConfigBrutForceWidget.h ConfigDictionaryWidget.h ConfigAbstractAttackWidget.h
+SOURCES += main.cpp MainWindow.cpp AbstractAlgo.cpp AlgoMd5.cpp AlgoMd4.cpp AlgoSha1.cpp AbstractAttack.cpp BrutForceAttack.cpp MetaString.cpp HashListWidget.cpp CommonAttack.cpp DictionaryAttack.cpp MetaString2.cpp AbstractString.cpp InfoWidget.cpp ConfigBrutForceWidget.cpp ConfigAttackDialog.cpp ConfigDictionaryWidget.cpp ConfigAbstractAttackWidget.cpp
 

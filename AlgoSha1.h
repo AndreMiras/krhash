@@ -7,8 +7,8 @@
  */
 
 
-#ifndef ALGOMD5_H_
-#define ALGOMD5_H_
+#ifndef ALGOSHA1_H_
+#define ALGOSHA1_H_
 
 #include "AbstractAlgo.h"
 
@@ -18,24 +18,24 @@
 #include <QTime>
 #include <QCryptographicHash>
 
-#include <openssl/md5.h>
+#include <openssl/sha.h>
 
 #include <iostream>
 
 
 class HashType;
 
-class AlgoMd5 : public AbstractAlgo
+class AlgoSha1 : public AbstractAlgo
 {
 
 public:
-    AlgoMd5();
+    AlgoSha1();
 
     QByteArray hash(const QByteArray* data) const;
     // inline QByteArray hash(const QByteArray & data) const
-    // { return QCryptographicHash::hash(data, QCryptographicHash::Md5); }
+    // { return QCryptographicHash::hash(data, QCryptographicHash::Sha); }
 
-    // unsigned char * AlgoMd5::hashSpeed(const QByteArray & data) const;
+    // unsigned char * AlgoSha::hashSpeed(const QByteArray & data) const;
 
     inline QByteArray hashHumanReadable(const QByteArray* data) const
     { return this->hash(data).toHex(); }
@@ -68,5 +68,5 @@ private:
 
 };
 
-#endif /*ALGOMD5_H_*/
+#endif /*ALGOSHA1_H_*/
 

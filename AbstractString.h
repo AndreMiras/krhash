@@ -34,8 +34,9 @@ public:
      *
      */
     AbstractString();
-    AbstractString(const char * str);
-    AbstractString(const QByteArray & other);
+    // FIXME[cleaning]: can remove below
+    // AbstractString(const char * str);
+    // AbstractString(const QByteArray & other);
    
     ~AbstractString();
 

@@ -28,11 +28,6 @@ MetaString::MetaString() : AbstractString()
     // FIXME:    size of lastIndex should be MaxSizeToCrackValue
     for (int i=0; i < 7; ++i)
         this->lastIndex[i] = 0;
-
-    std::cout << "MetaString::computeTotal(), charsetLength: " << userCharset.length() << std::endl;
-    std::cout << "MetaString::computeTotal(), minSize: " << minSize << std::endl;
-    std::cout << "MetaString::computeTotal(), maxSize: " << maxSize << std::endl;
-    std::cout << "MetaString::Constructed[End]" << std::endl;
 }
 
 //MetaString::MetaString(const QByteArray & other) : AbstractString(other) { }
@@ -143,5 +138,4 @@ void MetaString::setCharRange(int from, int to)
     startAt(from);
     stopAt(to);
 }
-
 

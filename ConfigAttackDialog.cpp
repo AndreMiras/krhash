@@ -41,6 +41,7 @@ void ConfigAttackDialog::createConfigAttackDialog()
     algoCombobox = new QComboBox();
     algoCombobox->addItem(tr("Md4"));
     algoCombobox->addItem(tr("Md5"));
+    algoCombobox->addItem(tr("Sha"));
     algoCombobox->addItem(tr("Double Md5"));
     algoCombobox->setCurrentIndex
                     (

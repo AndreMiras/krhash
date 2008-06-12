@@ -1,7 +1,8 @@
 #include "AbstractAttack.h"
 
 
-AbstractAttack::AbstractAttack(AbstractAlgo * algo) : QList<QByteArray>()
+// AbstractAttack::AbstractAttack(AbstractAlgo * algo) : QList<QByteArray>()
+AbstractAttack::AbstractAttack(AbstractAlgo * algo) : QSet<QByteArray>()
 {
     this->setAlgo(algo);
     advancement = 0;
@@ -18,7 +19,7 @@ void AbstractAttack::addHash(const QByteArray & hash)
 {
     // Then we avoid to transform hash before compare them which is faster for cracking
     std::cout << "AbstractAttack::addHash(): " << qPrintable(QString(hash)) << std::endl;
-    this->append(algo->formatHash(hash));
+    this->insert(algo->formatHash(hash));
 }
 
 void AbstractAttack::addHash(const QList<QByteArray> & hashList)
@@ -26,16 +27,6 @@ void AbstractAttack::addHash(const QList<QByteArray> & hashList)
     for (int i=0; i < hashList.size(); ++i)
         this->addHash(hashList.at(i));
 }
-
-
-int AbstractAttack::indexOfHash(const QByteArray & hash) const
-{
-    int i = this->size() - 1;
-    while ( (i >= 0) && (this->at(i) != hash) )
-        --i;
-    return i;
-}
-
 
 void AbstractAttack::addFoundHash(const QString & plainText)
 {
@@ -46,16 +37,6 @@ void AbstractAttack::addFoundHash(const QString & plainText)
     emit hashFound(algo->hashHumanReadable(&plainText.toAscii()));
     emit hashFound();
 }
-
-/*
-void AbstractAttack::showFound() const
-{
-    std::cout << "Found hash: " << foundHash.size() << std::endl;
-    for (int i=0; i < foundHash.size(); ++i)
-        std::cout << qPrintable(foundHash.at(i)) << " : " 
-                    << qPrintable(QString(algo->hashHumanReadable(foundHash.at(i).toAscii()))) << std::endl;
-}
-*/
 
 void AbstractAttack::showFound() const
 {
@@ -86,7 +67,10 @@ QByteArray AbstractAttack::getPlain(const QByteArray & hash) const
 QList<QByteArray> AbstractAttack::notFound() const
 {
     QList<QByteArray> tmpHashList;
-    for (int i=0; i < this->size(); i++)
-        tmpHashList.append(algo->unFormatHash(this->at(i)));
+    QSet<QByteArray>::const_iterator hash = this->begin();
+    for (hash = this->begin(); hash != this->end(); ++hash)
+        tmpHashList.append(algo->unFormatHash(*hash));
+
     return tmpHashList;
 }
+
