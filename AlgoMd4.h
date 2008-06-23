@@ -18,15 +18,7 @@
 #include <QTime>
 #include <QCryptographicHash>
 
-// #ifdef _WIN32
-// http://source.winehq.org/source/dlls/advapi32/crypt_md4.c
-// http://msdn.microsoft.com/en-us/library/bb432605(VS.85).aspx
-// #include <QCryptographicHash>
-// #include <windows.h>
-//#include <wincrypt.h>
-// #else
 #include <openssl/md4.h>
-// #endif
 
 #include <iostream>
 

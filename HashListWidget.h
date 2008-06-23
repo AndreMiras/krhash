@@ -4,8 +4,22 @@
  *      - Should really use a hashManager Class or something then you can Add some hash before
  *          attack has been set
  *      - expand the QListWidgetItem vertically when resizing the window
+ *      - Action, for instance :
+ *          - Select :
+ *              - all
+ *              - cracked
+ *              - uncracked
+ *          - Export :
+ *              - selected
+ *          - Remove :
+ *              - selected
+ *              - support supp key as well
  *
- * FIXME: should inherit HashList
+ *
+ *
+ * FIXME:
+ *  - can't remove found hash cause "hash : value" isn't reconized on attack
+ *      should really use a QHash with key/value
  *
  *
  */
@@ -16,6 +30,7 @@
 #define HASHLISTWIDGET_H
 
 #include <QWidget>
+#include <QListWidget>
 
 #include "AbstractAttack.h"
 
@@ -23,9 +38,9 @@
 
 class QListWidgetItem;
 class QFile;
-class QListWidget;
+class QAction;
 
-class HashListWidget : public QWidget
+class HashListWidget : public QListWidget
 {
     Q_OBJECT
 
@@ -39,19 +54,29 @@ public:
 
 public slots:
     void addHash(const QByteArray & hash);
+    void removeHash(const QByteArray & hash);
     void markHashFound(const QByteArray & hash);
+    void removeSelectedHashes();
+    void removeAllHashes();
 
 signals:
     void hashAdded();
     void hashRemoved();
 
+protected:
+    void contextMenuEvent(QContextMenuEvent *event);
+
 
 private:
     AbstractAttack* attack;
-    QListWidget* hashList;
     QListWidgetItem* hashItem;
+
+    QAction* removeSelectedHashesAct;
+    QAction* removeAllHashesAct;
+//    QAction* removeCrackedHashesAct;
+//    QAction* removeUnCrackedHashesAct;
     
-    void createListWidget();
+    void createActions();
 
     QListWidgetItem* createHashItem(const QByteArray & hash);
 
