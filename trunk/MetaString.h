@@ -79,6 +79,8 @@ public:
      * FIXME:   optimize this method which is too slow
      * TIME: 957ms (28790448 tested)
      *
+     *      use ptr++ instead of *ptr[++i]
+     *
      */
     MetaString & operator++();
     MetaString operator++(int);
@@ -114,7 +116,16 @@ private:
 
     char a_minValue;        // faster than call minValue() each time
     bool charsetShorted;    // souldn't have to use this as charset is short when construct this obj
-    int lastIndex[7];        // limit call of indexOf()
+
+    /*
+     * stores all indexes of letter for the current word to limit call of indexOf()
+     * for exemple:
+     * charset="abcdefghijklmnopqrstuvwxyz"
+     * currentWord="blabla"
+     * *lastindex = "1,6,0,1,6,0"
+     */
+    // FIXME[cleaning]:    size of lastIndex should be MaxSizeToCrackValue
+    int lastIndex[7];
 
     /*
      * TODO:    defaultCharset should be short and then return the first value

@@ -48,7 +48,7 @@ MainWindow::MainWindow()
     createMenus();
 
     // FIXME[cleaning]: should use some var/const
-    setWindowTitle(tr("KrHash 0.1 beta"));
+    setWindowTitle(tr("KrHash 0.2"));
 
 //    resize(minimumSizeHint());
     // TODO: should be expensible later

@@ -48,15 +48,19 @@ void addHash(const QByteArray & hash);
 void addHash(const QList<QByteArray> & hashList);
 
 
-/*
- *
- * Could be useful in the user interface as well (that why it's not private)
- * Note:    As a hash cannot be added twice we can do a partial scan/look
- *          Of course the hash should exist
- * Time:    724ms (28790448 tested) 
- */
 inline void removeHash(const QByteArray & hash)
-{ this->remove(hash); }
+{ this->remove(algo->formatHash(hash)); }
+/*
+{
+    if (this->remove(algo->formatHash(hash)))
+        std::cout << "[" << qPrintable(QString(hash)) << "]"
+        << " removed!" << std::endl;
+    else
+        std::cout << "Error while trying to remove ["
+        << qPrintable(QString(hash)) << "]" << std::endl;
+        
+}
+*/
 
 /*
  * Note:    For debugging purpose
