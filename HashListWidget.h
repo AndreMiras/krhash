@@ -16,12 +16,6 @@
  *              - support supp key as well
  *
  *
- *
- * FIXME:
- *  - can't remove found hash cause "hash : value" isn't reconized on attack
- *      should really use a QHash with key/value
- *
- *
  */
 
 
@@ -39,6 +33,7 @@
 class QListWidgetItem;
 class QFile;
 class QAction;
+//class QShortcut;
 
 class HashListWidget : public QListWidget
 {
@@ -75,6 +70,7 @@ private:
     QAction* removeAllHashesAct;
 //    QAction* removeCrackedHashesAct;
 //    QAction* removeUnCrackedHashesAct;
+    QShortcut* removeSelectedHashesShortcut;
     
     void createActions();
 

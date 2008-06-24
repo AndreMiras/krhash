@@ -31,7 +31,8 @@ void AbstractAttack::addHash(const QList<QByteArray> & hashList)
 void AbstractAttack::addFoundHash(const QString & plainText)
 {
     // FIXME[cleaning]: warning: taking address of temporary
-    this->removeHash(algo->hash(&plainText.toAscii()));
+    // this->removeHash(algo->hash(&plainText.toAscii()));
+    this->removeHash(algo->hashHumanReadable(&plainText.toAscii()));
 //    foundHash.append(plainText);
     foundHash.insert(algo->hashHumanReadable(&plainText.toAscii()), plainText);
     emit hashFound(algo->hashHumanReadable(&plainText.toAscii()));

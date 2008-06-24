@@ -37,12 +37,10 @@ QSize HashListWidget::sizeHint()
 void HashListWidget::createActions()
 {
     removeSelectedHashesAct = new QAction(tr("Remove selected hashes"), this);
-    // FIXME: del shortcut is not working
-    removeSelectedHashesAct->setShortcut(Qt::Key_Delete);
-    // removeSelectedHashesAct->setShortcut(tr("Del"));
+    removeSelectedHashesShortcut = new QShortcut(QKeySequence(QKeySequence(Qt::Key_Delete)), this);
     removeAllHashesAct = new QAction(tr("Remove all hashes"), this);
-    // TODO
     connect(removeSelectedHashesAct, SIGNAL(triggered()), this, SLOT(removeSelectedHashes()));
+    connect(removeSelectedHashesShortcut, SIGNAL(activated()), this, SLOT(removeSelectedHashes()));
     connect(removeAllHashesAct, SIGNAL(triggered()), this, SLOT(removeAllHashes()));
 }
 
@@ -50,6 +48,7 @@ QListWidgetItem* HashListWidget::createHashItem(const QByteArray & hash)
 {
     hashItem = new QListWidgetItem(QString(hash));
     hashItem->setText(QString(hash));
+    hashItem->setWhatsThis(QString(hash));
     hashItem->setBackground(QBrush(QColor(Qt::blue)));
     return hashItem;
 }
@@ -67,11 +66,13 @@ void HashListWidget::markHashFound(const QByteArray & hash)
 void HashListWidget::markHashFound(const QByteArray & hash)
 {
     int i = this->count() - 1;
-    while ( (i >= 0) && (this->item(i)->text() != hash) )
+    while ( (i >= 0) && (this->item(i)->whatsThis() != hash) )
         i--;
+// FIXME[cleaning]: could be better, I'm sure :)
 // Items removed from a list widget will not be managed by Qt, and will need to be deleted manually.
     this->takeItem(i);
     this->insertItem(i, tr(hash) + tr(" : ") + tr(attack->getPlain(hash)));
+    this->item(i)->setWhatsThis(QString(hash));
     this->item(i)->setBackground(QBrush(QColor(Qt::green)));
 }
 
@@ -97,7 +98,7 @@ void HashListWidget::addHash(const QByteArray & hash)
 void HashListWidget::removeHash(const QByteArray & hash)
 {
     int i = this->count() - 1;
-    while ( (i >= 0) && (this->item(i)->text() != hash) )
+    while ( (i >= 0) && (this->item(i)->whatsThis() != hash) )
         i--;
 // FIXME[cleaning]: 'Items removed from a list widget will not be managed by Qt, and will need to be deleted manually'
     this->takeItem(i);
@@ -136,14 +137,14 @@ void HashListWidget::removeSelectedHashes()
     std::cout << "Removing Selected Hashes" << std::endl;
     QList<QListWidgetItem*> tmpList = this->selectedItems();
     for (int i = tmpList.count() - 1; i >= 0; --i)
-        removeHash(tmpList.at(i)->text().toAscii());
+        removeHash(tmpList.at(i)->whatsThis().toAscii());
 }
 
 void HashListWidget::removeAllHashes()
 {
     std::cout << "Removing All Hashes" << std::endl;
     for (int i = this->count() - 1; i >= 0; --i)
-        removeHash(this->item(i)->text().toAscii());
+        removeHash(this->item(i)->whatsThis().toAscii());
 }
 
 
