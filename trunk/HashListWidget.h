@@ -33,7 +33,7 @@
 class QListWidgetItem;
 class QFile;
 class QAction;
-//class QShortcut;
+class QShortcut;
 
 class HashListWidget : public QListWidget
 {

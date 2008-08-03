@@ -238,6 +238,11 @@ void MainWindow::createActions()
     openHashFileAct->setStatusTip(tr("Open an existing file"));
     connect(openHashFileAct, SIGNAL(triggered()), this, SLOT(openHashFile()));
 
+    saveHashesToFileAct = new QAction(tr("Save As..."), this);
+    // saveHashesToFileAct->setStatusTip(tr("Open an existing file"));
+    // TODO: connect to the right slot
+    connect(saveHashesToFileAct, SIGNAL(triggered()), this, SLOT(openHashFile()));
+    // FIXME[cleaning]: remove the lines below
 /*
     openDictionaryFileAct = new QAction(tr("&Open dictionary file..."), this);
     openDictionaryFileAct->setShortcut(tr("Ctrl+O"));

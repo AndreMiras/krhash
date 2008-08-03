@@ -26,6 +26,7 @@ void CommonAttack::run()
             this->addFoundHash(QString(*currentString));
 
         // FIXME[perfance]: division takes a lot of time
+        // I don't lose a lot of here anyway
         // emit takes as well but it's just called 10 times
         if ( cpt % (currentStringTotalDiv100) == 0 )
         {

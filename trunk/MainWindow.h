@@ -64,7 +64,9 @@ private:
     QMenu *algoMenu;
     QMenu *modeMenu;
     QAction *openHashFileAct;
-    QAction *openDictionaryFileAct;
+    QAction *saveHashesToFileAct;
+    // FIXME[cleaning]: not needed anymore
+    // QAction *openDictionaryFileAct;
     QAction *exitAct;
     QAction *configAttackAct;
     QAction *modeDictionaryAct;
