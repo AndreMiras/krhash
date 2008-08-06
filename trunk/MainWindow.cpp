@@ -94,6 +94,24 @@ void MainWindow::openHashFile()
      }
 }
 
+void MainWindow::saveHashToFile()
+{
+    QString filename = QFileDialog::getSaveFileName(this,
+                        tr("Save File"), QDir::currentPath(), tr("Text (*.txt)"));
+    QFile file(filename);
+    // TODO: release a signal on error
+    if (!file.open(QFile::WriteOnly | QFile::Truncate))
+         return;
+    QTextStream out(&file);
+    QHash<QString, QString> foundHash = attack->getFound();
+    QHashIterator<QString, QString> i(foundHash);
+    while (i.hasNext())
+    {
+        i.next();
+        out << i.key() << " : " << i.value() << endl;
+    }
+}
+
 void MainWindow::open()
 {
     infoLabel->setText(tr("Invoked <b>File|Open</b>"));
@@ -223,6 +241,7 @@ void MainWindow::createMenus()
 {
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(openHashFileAct);
+    fileMenu->addAction(saveHashToFileAct);
 //    fileMenu->addAction(openDictionaryFileAct);
     fileMenu->addAction(exitAct);
 
@@ -238,10 +257,10 @@ void MainWindow::createActions()
     openHashFileAct->setStatusTip(tr("Open an existing file"));
     connect(openHashFileAct, SIGNAL(triggered()), this, SLOT(openHashFile()));
 
-    saveHashesToFileAct = new QAction(tr("Save As..."), this);
-    // saveHashesToFileAct->setStatusTip(tr("Open an existing file"));
+    saveHashToFileAct = new QAction(tr("Save Cracked As..."), this);
+    // saveHashToFileAct->setStatusTip(tr("Open an existing file"));
     // TODO: connect to the right slot
-    connect(saveHashesToFileAct, SIGNAL(triggered()), this, SLOT(openHashFile()));
+    connect(saveHashToFileAct, SIGNAL(triggered()), this, SLOT(saveHashToFile()));
     // FIXME[cleaning]: remove the lines below
 /*
     openDictionaryFileAct = new QAction(tr("&Open dictionary file..."), this);

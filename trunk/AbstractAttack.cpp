@@ -50,6 +50,24 @@ void AbstractAttack::showFound() const
     }
 }
 
+QHash<QString, QString> AbstractAttack::getFound() const
+{
+    return foundHash;
+}
+
+
+QSet<QString> AbstractAttack::getNotFound() const
+{
+
+}
+
+
+QHash<QString, QString> AbstractAttack::getAll() const
+{
+
+}
+
+
 void AbstractAttack::setAlgo(AbstractAlgo * algo)
 {
     this->algo = algo;

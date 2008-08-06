@@ -68,6 +68,11 @@ inline void removeHash(const QByteArray & hash)
  */
 void showFound() const;
 
+
+QHash<QString, QString> getFound() const;
+QSet<QString> getNotFound() const;
+QHash<QString, QString> getAll() const;
+
 inline bool isValid(const QByteArray & hash) const
 { return (this->algo->isValid(hash) && !this->contains(this->algo->formatHash(hash))); }
 
