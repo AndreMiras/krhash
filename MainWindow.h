@@ -36,6 +36,7 @@ public:
 
 private slots:
     void openHashFile();
+    void saveHashToFile();
     void open();
     void openConfigAttackDialog();
 
@@ -64,7 +65,7 @@ private:
     QMenu *algoMenu;
     QMenu *modeMenu;
     QAction *openHashFileAct;
-    QAction *saveHashesToFileAct;
+    QAction *saveHashToFileAct;
     // FIXME[cleaning]: not needed anymore
     // QAction *openDictionaryFileAct;
     QAction *exitAct;
