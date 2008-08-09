@@ -89,17 +89,6 @@ public:
 
     int computeTotal() const;
 
-    // FIXME: private 
-    void setCharset(const QByteArray charset);
-
-// TODO: better implementation?
-//      using iterators
-//      could be private now as I'm now using QSettings
-// FIXME: that have no sence, setStart/setStop should be set at the same time only
-//          use setRange instead (when have time) !
-    void startAt(int charSize);
-    void stopAt(int charSize);
-    void setCharRange(int from, int to);
 
 protected:
 
@@ -110,9 +99,6 @@ private:
     // static const char defaultCharset[] = "abcdefghijklmnopqrstuvwxyz";
     // int charsetLength;      // limit object access
     QByteArray userCharset;
-
-    int minSize;
-    int maxSize;
 
     char a_minValue;        // faster than call minValue() each time
     bool charsetShorted;    // souldn't have to use this as charset is short when construct this obj
@@ -136,6 +122,11 @@ private:
 
     // should be called when using setCharset/setRange... to compute the new default state
     void updateString();
+    void setCharset(const QByteArray charset);
+
+    int getMinSize() const;
+    int getMaxSize() const;
+
 };
 
 #endif /*METASTRING_H_*/
