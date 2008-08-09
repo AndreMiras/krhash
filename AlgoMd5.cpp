@@ -25,7 +25,6 @@ QByteArray AlgoMd5::hash(const QByteArray* data) const
     MD5_Init(&ht->md5Context);
     MD5_Update(&ht->md5Context, (const unsigned char *)data->constData(), data->length());
     MD5_Final((unsigned char *)hashResult.data(), &ht->md5Context);
-//    MD5_Final(finalTest, &ht->md5Context);
     return hashResult;
 }
 

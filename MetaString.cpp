@@ -15,17 +15,11 @@ MetaString::MetaString() : AbstractString()
     QSettings settings("u54", "KrHash");
     // const QByteArray MetaString::defaultCharset = QByteArray("abcdefghijklmnopqrstuvwxyz");
     setCharset(settings.value("Charset", defaultCharset).toString().toAscii());
-//    userCharset = QByteArray(defaultCharset);
-    // charsetLength = userCharset.length();
-//    this->a_minValue = minValue();
-    startAt(settings.value("CharsetFrom", 0).toInt());
-    stopAt(settings.value("CharsetTo", 6).toInt());
-    //this->fill('a', 1);
 
     this->pData = this->data();
     this->pData += this->length() - 1; // at the last element
 
-    // FIXME[cleaning]:    size of lastIndex should be MaxSizeToCrackValue
+    // FIXME[cleaning]: hardcoded value   
     for (int i=0; i < 7; ++i)
         this->lastIndex[i] = 0;
 }
@@ -41,9 +35,7 @@ MetaString::~MetaString()
 void MetaString::updateString()
 {
     a_minValue = minValue();
-    this->fill(a_minValue, minSize);
-    std::cout << "MetaString::updateString a_minValue: " << a_minValue << std::endl;
-    std::cout << "MetaString::updateString minSize: " << minSize << std::endl;
+    this->fill(a_minValue, getMinSize());
 }
 
 const char MetaString::minValue() const
@@ -141,7 +133,7 @@ MetaString & MetaString::operator++()
         // this->data()[i] = newChar;
     }
 
-    /*
+     *
      *
      * Note:    is it the best way, have to think about it when not tired
      * TODO:    emit when inserting (for output)
@@ -160,14 +152,11 @@ MetaString & MetaString::operator++()
 
 int MetaString::computeTotal() const
 {
-//    return pow(userCharset.length(), maxSize);
-    std::cout << "MetaString::computeTotal()" << std::endl;
     std::cout << "MetaString::computeTotal(), charsetLength: " << userCharset.length()<< std::endl;
-    std::cout << "MetaString::computeTotal(), maxSize: " << maxSize << std::endl;
-    std::cout << "MetaString::computeTotal(), minSize: " << minSize << std::endl;
-    
-    int iteration = ( pow(userCharset.length(), maxSize)
-            - pow(userCharset.length(), minSize) );
+    std::cout << "MetaString::computeTotal(), maxSize: " << getMaxSize() << std::endl;
+    std::cout << "MetaString::computeTotal(), minSize: " << getMinSize() << std::endl;
+    int iteration = ( pow(userCharset.length(), getMaxSize())
+            - pow(userCharset.length(), getMinSize()) );
     std::cout << "MetaString::computeTotal(), iterations: " << iteration << std::endl;
     return iteration;
 }
@@ -176,29 +165,21 @@ void MetaString::setCharset(const QByteArray charset)
 {
     userCharset = QByteArray(charset);
     updateString();
-//    std::cout << "newCharset:" << qPrintable(QString(charset)) << std::endl;
 }
 
-void MetaString::startAt(int charSize)
+int MetaString::getMinSize() const
 {
-    if (charSize == 0)
-        minSize = 1;
-    else
-        minSize = charSize;
-//    std::cout << "startAt: " << minSize << std::endl;
-    updateString();
+    QSettings settings;
+    int min = settings.value("CharsetFrom", 1).toInt();
+    std::cout << "min: " << min << std::endl;
+    return min;
 }
 
-void MetaString::stopAt(int charSize)
+int MetaString::getMaxSize() const
 {
-    this->maxSize = charSize;
-    updateString();
-    std::cout << "stopAt: " << charSize << std::endl;
-}
-
-void MetaString::setCharRange(int from, int to)
-{
-    startAt(from);
-    stopAt(to);
+    QSettings settings;
+    int max = settings.value("CharsetTo", 6).toInt();
+    std::cout << "max: " << max << std::endl;
+    return max;
 }
 
