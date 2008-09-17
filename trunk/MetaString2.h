@@ -62,7 +62,7 @@ public:
      * a Qt method for that (return number of lines) I guess but didn't find it yet
      *
      */
-    int computeTotal() const;
+    double computeTotal() const;
 
 void generatedFrom(const QByteArray fileName);
 

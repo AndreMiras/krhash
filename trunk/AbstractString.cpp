@@ -25,7 +25,7 @@ AbstractString::~AbstractString()
 }
 
 
-int AbstractString::total()
+double AbstractString::total()
 {
     if (computedTotal == -1)
         computedTotal = computeTotal();

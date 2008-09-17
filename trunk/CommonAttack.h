@@ -17,6 +17,7 @@
 #include "AbstractString.h"
 
 #include <iostream>
+#include <math.h>
 
 #include <QString>
 #include <QList>

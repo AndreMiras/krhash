@@ -60,7 +60,7 @@ MetaString2 & MetaString2::operator++()
 }
 
 
-int MetaString2::computeTotal() const
+double MetaString2::computeTotal() const
 {
     return dic->size();
 }

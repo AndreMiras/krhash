@@ -48,18 +48,13 @@ public:
 
 //    virtual void setup(const QString & str) = 0;
 
-    /*
-     *
-     */
-    virtual int computeTotal() const = 0;
+    virtual double computeTotal() const = 0;
 
     /*
      * TODO: better to have it as const (faster) so maybe computedTotal() after construct
      *          then we can call total() which only return computedTotal attribute
-     *
-     *
      */
-    int total();
+    double total();
 
 //  INFO: not needed anymore
 //    virtual void generatedFrom(const QByteArray) = 0;
@@ -67,7 +62,7 @@ public:
 //    virtual void stopAt(int) = 0;
 
 protected:
-    int computedTotal;
+    double computedTotal;
 
 };
 
