@@ -87,7 +87,7 @@ public:
 
 //    void setup(const QString & resumeStr);
 
-    int computeTotal() const;
+    double computeTotal() const;
 
 
 protected:

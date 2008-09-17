@@ -12,14 +12,14 @@ CommonAttack::~CommonAttack()
 
 void CommonAttack::run()
 {
-    int cpt = currentString->total();
+    double cpt = currentString->total();
     QTime timer;
     timer.start();
     int hashRate;
     // perf improvement
-    int currentStringTotal = currentString->total();
-    int currentStringTotalDiv100 = currentStringTotal / 100;
+    double currentStringTotalDiv100 = cpt / 100;
     // FIXME[cleaning/performances]: should avoid stop test and use QThread properly instead
+    std::cout << "cpt: " << cpt << std::endl;
     while (!this->empty() && cpt > 0 && !stop)
     {
         if(this->contains(algo->hash(&++*currentString)))
@@ -28,7 +28,9 @@ void CommonAttack::run()
         // FIXME[perfance]: division takes a lot of time
         // I don't lose a lot of here anyway
         // emit takes as well but it's just called 10 times
-        if ( cpt % (currentStringTotalDiv100) == 0 )
+        // if (true)
+        // if ( cpt % (currentStringTotalDiv100) == 0 )
+        if ( fmod(cpt, currentStringTotalDiv100) == 0 )
         {
             emit advancementChanged(++advancement);
             std::cout << "CommonAttack::run(), currentString: " 

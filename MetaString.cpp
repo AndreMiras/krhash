@@ -150,12 +150,15 @@ MetaString & MetaString::operator++()
 }
 */
 
-int MetaString::computeTotal() const
+double MetaString::computeTotal() const
 {
     std::cout << "MetaString::computeTotal(), charsetLength: " << userCharset.length()<< std::endl;
     std::cout << "MetaString::computeTotal(), maxSize: " << getMaxSize() << std::endl;
     std::cout << "MetaString::computeTotal(), minSize: " << getMinSize() << std::endl;
-    int iteration = ( pow(userCharset.length(), getMaxSize())
+    std::cout << "MetaString::computeTotal(): (" << userCharset.length()
+                << "^" << getMaxSize() << ") - ("
+                << userCharset.length() << "^" << getMinSize() << ")" << std::endl;
+    double iteration = ( pow(userCharset.length(), getMaxSize())
             - pow(userCharset.length(), getMinSize()) );
     std::cout << "MetaString::computeTotal(), iterations: " << iteration << std::endl;
     return iteration;
