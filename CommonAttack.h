@@ -42,7 +42,7 @@ public:
      *
      *
      */
-    // should be protected
+    // FIXME[cleaning]: should be protected
     void run();
     // void stop();
 
@@ -53,6 +53,7 @@ protected:
 
 private:
 //    AbstractAlgo *algo;
+    double cpt;
     QString charset;
 //    MetaString currentString;
     
@@ -104,6 +105,8 @@ private:
      *
      */
     // void setCurrentString(QByteArray);
+
+    int getAdvancement() const;
 
 };
 

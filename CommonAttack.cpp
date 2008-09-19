@@ -2,6 +2,7 @@
 
 CommonAttack::CommonAttack() : AbstractAttack()
 {
+    cpt = 0;
 }
 
 CommonAttack::~CommonAttack()
@@ -12,12 +13,13 @@ CommonAttack::~CommonAttack()
 
 void CommonAttack::run()
 {
-    double cpt = currentString->total();
+    // double cpt = currentString->total();
+    cpt = currentString->total();
     QTime timer;
     timer.start();
     int hashRate;
     // perf improvement
-    double currentStringTotalDiv100 = cpt / 100;
+    // double currentStringTotalDiv100 = cpt / 100;
     // FIXME[cleaning/performances]: should avoid stop test and use QThread properly instead
     std::cout << "cpt: " << cpt << std::endl;
     while (!this->empty() && cpt > 0 && !stop)
@@ -25,11 +27,7 @@ void CommonAttack::run()
         if(this->contains(algo->hash(&++*currentString)))
             this->addFoundHash(QString(*currentString));
 
-        // FIXME[perfance]: division takes a lot of time
-        // I don't lose a lot of here anyway
-        // emit takes as well but it's just called 10 times
-        // if (true)
-        // if ( cpt % (currentStringTotalDiv100) == 0 )
+        /* 
         if ( fmod(cpt, currentStringTotalDiv100) == 0 )
         {
             emit advancementChanged(++advancement);
@@ -43,7 +41,17 @@ void CommonAttack::run()
                 timer.restart();
             }
         }
+        */
         cpt--;
     }
+}
+
+int CommonAttack::getAdvancement() const
+{
+    int adv = 100 * int( (currentString->total() - cpt) / currentString->total() );
+    // std::cout << "cpt: " << cpt << std::endl;
+    std::cout << "Adv: " << adv << std::endl;
+    // return 100 * int( (currentString->total() - cpt) / currentString->total() );
+    return adv; 
 }
 
