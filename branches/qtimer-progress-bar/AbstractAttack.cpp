@@ -8,6 +8,9 @@ AbstractAttack::AbstractAttack(AbstractAlgo * algo) : QSet<QByteArray>()
     advancement = 0;
     stop = false;
     advancementTimer = new QTimer(this);
+
+    // TODO: put all of that in some updateStatus
+    // updateStatus update adv, rate, current string and status
     connect(advancementTimer, SIGNAL(timeout()), this, SLOT(updateAdvancement()));
     connect(advancementTimer, SIGNAL(timeout()), this, SLOT(updateHashRate()));
     connect(this, SIGNAL(started()), advancementTimer, SLOT(start()));
