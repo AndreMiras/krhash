@@ -20,6 +20,7 @@
 #include <QSet>
 #include <QHash>
 #include <QByteArray>
+#include <QTimer>
 
 
 class AbstractAttack : public QThread, public QSet<QByteArray>
@@ -89,12 +90,18 @@ void stopAttack();
 
 QList<QByteArray> notFound() const;
 
+/*
+ * Return {"Cracking", "Stoped", "..." }
+ *
+ */
+// QString currentStatus() const;
+
 
 signals:
     void hashFound(QByteArray hash);
     void hashFound();
-    void advancementChanged(int advancement);
-    void hashRateChanged(int rate);
+    void advancementChanged(int advancement) const;
+    void hashRateChanged(int rate) const;
 
 protected:
     // FIXME[cleaning/performance]: should use QThread and QEventLoop instead
@@ -137,7 +144,13 @@ protected slots:
 
 
 private:
+    QTimer* advancementTimer;
+    virtual int getAdvancement() const;
+    virtual int getHashRate() const;
 
+private slots:
+    void updateAdvancement() const;
+    void updateHashRate() const;
 };
 
 #endif /*ABSTRACTATTACK_H_*/
