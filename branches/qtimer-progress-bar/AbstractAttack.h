@@ -101,8 +101,7 @@ signals:
     void hashFound(QByteArray hash);
     void hashFound();
     void advancementChanged(int advancement) const;
-    // FIXME[cleaning]: should be const as well
-    void hashRateChanged(int rate);
+    void hashRateChanged(int rate) const;
 
 protected:
     // FIXME[cleaning/performance]: should use QThread and QEventLoop instead
@@ -147,9 +146,11 @@ protected slots:
 private:
     QTimer* advancementTimer;
     virtual int getAdvancement() const;
+    virtual int getHashRate() const;
 
 private slots:
     void updateAdvancement() const;
+    void updateHashRate() const;
 };
 
 #endif /*ABSTRACTATTACK_H_*/

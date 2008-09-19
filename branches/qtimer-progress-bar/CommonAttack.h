@@ -55,6 +55,7 @@ private:
 //    AbstractAlgo *algo;
     double cpt;
     QString charset;
+    QTime* time;
 //    MetaString currentString;
     
     /*
@@ -107,6 +108,7 @@ private:
     // void setCurrentString(QByteArray);
 
     int getAdvancement() const;
+    int getHashRate() const;
 
 };
 
