@@ -7,13 +7,22 @@ AbstractAttack::AbstractAttack(AbstractAlgo * algo) : QSet<QByteArray>()
     this->setAlgo(algo);
     advancement = 0;
     stop = false;
+    advancementTimer = new QTimer(this);
+
+    // TODO: put all of that in some updateStatus
+    // updateStatus update adv, rate, current string and status
+    connect(advancementTimer, SIGNAL(timeout()), this, SLOT(updateAdvancement()));
+    connect(advancementTimer, SIGNAL(timeout()), this, SLOT(updateHashRate()));
+    connect(this, SIGNAL(started()), advancementTimer, SLOT(start()));
+    connect(this, SIGNAL(finished()), advancementTimer, SLOT(stop()));
+    // TODO: make this interval configurable using the interface
+    advancementTimer->setInterval(5000);
 }
 
 AbstractAttack::~AbstractAttack()
 {
     std::cout << "AbstractAttack::Destruct" << std::endl;
 }
-
 
 void AbstractAttack::addHash(const QByteArray & hash)
 {
@@ -61,12 +70,10 @@ QSet<QString> AbstractAttack::getNotFound() const
 
 }
 
-
 QHash<QString, QString> AbstractAttack::getAll() const
 {
 
 }
-
 
 void AbstractAttack::setAlgo(AbstractAlgo * algo)
 {
@@ -93,3 +100,24 @@ QList<QByteArray> AbstractAttack::notFound() const
     return tmpHashList;
 }
 
+int AbstractAttack::getAdvancement() const
+{
+    std::cout << "getAdvancement Not Implemented" << std::endl;
+    return 0;
+}
+
+int AbstractAttack::getHashRate() const
+{
+    std::cout << "getHashRate Not Implemented" << std::endl;
+    return 0;
+}
+
+void AbstractAttack::updateAdvancement() const
+{
+    emit advancementChanged(getAdvancement());
+}
+
+void AbstractAttack::updateHashRate() const
+{
+    emit hashRateChanged(getHashRate());
+}
