@@ -7,6 +7,14 @@ AbstractAttack::AbstractAttack(AbstractAlgo * algo) : QSet<QByteArray>()
     this->setAlgo(algo);
     advancement = 0;
     stop = false;
+    advancementTimer = new QTimer(this);
+    connect(advancementTimer, SIGNAL(timeout()), this, SLOT(updateAdvancement()));
+    // advancementTimer->start(1000);
+    advancementTimer->setInterval(5000);
+
+    // FIXME: should be started within the run method
+    // perhaps I should do a pre-run  which is called automatically
+    advancementTimer->start();
 }
 
 AbstractAttack::~AbstractAttack()
@@ -93,3 +101,13 @@ QList<QByteArray> AbstractAttack::notFound() const
     return tmpHashList;
 }
 
+int AbstractAttack::getAdvancement() const
+{
+    std::cout << "getAdvancement Not Implemented" << std::endl;
+    return 0;
+}
+
+void AbstractAttack::updateAdvancement() const
+{
+    emit advancementChanged(getAdvancement());
+}

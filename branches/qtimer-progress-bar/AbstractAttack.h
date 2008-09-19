@@ -20,6 +20,7 @@
 #include <QSet>
 #include <QHash>
 #include <QByteArray>
+#include <QTimer>
 
 
 class AbstractAttack : public QThread, public QSet<QByteArray>
@@ -89,11 +90,18 @@ void stopAttack();
 
 QList<QByteArray> notFound() const;
 
+/*
+ * Return {"Cracking", "Stoped", "..." }
+ *
+ */
+// QString currentStatus() const;
+
 
 signals:
     void hashFound(QByteArray hash);
     void hashFound();
-    void advancementChanged(int advancement);
+    void advancementChanged(int advancement) const;
+    // FIXME[cleaning]: should be const as well
     void hashRateChanged(int rate);
 
 protected:
@@ -137,7 +145,11 @@ protected slots:
 
 
 private:
+    QTimer* advancementTimer;
+    virtual int getAdvancement() const;
 
+private slots:
+    void updateAdvancement() const;
 };
 
 #endif /*ABSTRACTATTACK_H_*/
