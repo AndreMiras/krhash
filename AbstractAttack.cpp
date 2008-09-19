@@ -9,19 +9,17 @@ AbstractAttack::AbstractAttack(AbstractAlgo * algo) : QSet<QByteArray>()
     stop = false;
     advancementTimer = new QTimer(this);
     connect(advancementTimer, SIGNAL(timeout()), this, SLOT(updateAdvancement()));
-    // advancementTimer->start(1000);
+    connect(advancementTimer, SIGNAL(timeout()), this, SLOT(updateHashRate()));
+    connect(this, SIGNAL(started()), advancementTimer, SLOT(start()));
+    connect(this, SIGNAL(finished()), advancementTimer, SLOT(stop()));
+    // TODO: make this interval configurable using the interface
     advancementTimer->setInterval(5000);
-
-    // FIXME: should be started within the run method
-    // perhaps I should do a pre-run  which is called automatically
-    advancementTimer->start();
 }
 
 AbstractAttack::~AbstractAttack()
 {
     std::cout << "AbstractAttack::Destruct" << std::endl;
 }
-
 
 void AbstractAttack::addHash(const QByteArray & hash)
 {
@@ -69,12 +67,10 @@ QSet<QString> AbstractAttack::getNotFound() const
 
 }
 
-
 QHash<QString, QString> AbstractAttack::getAll() const
 {
 
 }
-
 
 void AbstractAttack::setAlgo(AbstractAlgo * algo)
 {
@@ -107,7 +103,18 @@ int AbstractAttack::getAdvancement() const
     return 0;
 }
 
+int AbstractAttack::getHashRate() const
+{
+    std::cout << "getHashRate Not Implemented" << std::endl;
+    return 0;
+}
+
 void AbstractAttack::updateAdvancement() const
 {
     emit advancementChanged(getAdvancement());
+}
+
+void AbstractAttack::updateHashRate() const
+{
+    emit hashRateChanged(getHashRate());
 }
