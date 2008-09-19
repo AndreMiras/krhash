@@ -12,11 +12,9 @@ CommonAttack::~CommonAttack()
 
 void CommonAttack::run()
 {
-    // double cpt = currentString->total();
     cpt = currentString->total();
     time = new QTime();
     time->start();
-    int hashRate;
     // perf improvement
     // FIXME[cleaning/performances]: should avoid stop test and use QThread properly instead
     std::cout << "cpt: " << cpt << std::endl;
@@ -30,10 +28,11 @@ void CommonAttack::run()
 
 int CommonAttack::getAdvancement() const
 {
-    int adv = 100 * ( float(currentString->total() - cpt) / float(currentString->total()) );
+    int adv = int (100.0 * ( float(currentString->total() - cpt) / float(currentString->total()) ));
     return adv; 
 }
 
+// TODO: better having an average rate or a *realtime* ?
 int CommonAttack::getHashRate() const
 {
     int hashRate = 1000 * ( (currentString->total() - cpt) / time->elapsed());
