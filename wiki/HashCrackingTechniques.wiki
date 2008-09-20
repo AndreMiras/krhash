@@ -3,7 +3,7 @@
 
 = Introduction =
 
-Here is a non-exhaustive list of hash cracking techniques
+Here is a non-exhaustive list of hash cracking techniques.
 
 
 = Summary =
