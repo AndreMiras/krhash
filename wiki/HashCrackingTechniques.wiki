@@ -1,5 +1,5 @@
 #summary Cracking Techniques
-#labels cracking,technique,attack,brute-force,dictionary,heuristic,Featured
+#labels cracking,technique,attack,brute-force,dictionary,heuristic,Featured,rainbow,tables
 
 = Introduction =
 
@@ -8,4 +8,5 @@ Here is a non-exhaustive table of hash cracking techniques displaying whether th
 || *Techniques* || *Implemented* ||
 ||Brute-force||yes||
 ||Dictionary ||yes||
-||Heuristic ||yes||
+||Heuristic ||no||
+||Rainbow tables||no||
