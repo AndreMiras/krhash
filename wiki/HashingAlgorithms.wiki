@@ -6,7 +6,7 @@
 Here is a non-exhaustive list of populars hashing algorithms.
 
 
-||Algorithm||supported||
+|| *Algorithm* || *supported* ||
 ||md4||yes||
 ||md5||yes||
 ||sha||yes||
