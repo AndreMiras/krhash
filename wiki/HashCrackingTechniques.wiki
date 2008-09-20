@@ -1,0 +1,12 @@
+#summary Cracking Techniques
+#labels cracking,technique,attack,brute-force,dictionary,heuristic
+
+= Introduction =
+
+Here is a non-exhaustive list of hash cracking techniques
+
+
+= Summary =
+  * Brute-force attack
+  * Dictionary attack
+  * Heuristic attack
