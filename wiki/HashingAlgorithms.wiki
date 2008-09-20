@@ -3,11 +3,14 @@
 
 = Introduction =
 
-Here is a non-exhaustive list of populars hashing algorithms.
+Here is a non-exhaustive table of populars hashing algorithms displaying whether they are implemented or not.
+
+If you think I should implement a new one just [http://code.google.com/p/krhash/issues/entry fill out a ticket].
 
 
-|| *Algorithm* || *supported* ||
+|| *Algorithm* || *Implemented* ||
+||md2||no||
 ||md4||yes||
 ||md5||yes||
-||sha||yes||
+||sha0||no||
 ||sha1||yes||
