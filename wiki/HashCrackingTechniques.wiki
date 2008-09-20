@@ -5,6 +5,9 @@
 
 Here is a non-exhaustive table of hash cracking techniques displaying whether they are implemented or not.
 
+If you think I should implement a new one just [http://code.google.com/p/krhash/issues/entry fill out a ticket].
+
+
 || *Techniques* || *Implemented* ||
 ||Brute-force||yes||
 ||Dictionary ||yes||
