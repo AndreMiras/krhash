@@ -3,10 +3,9 @@
 
 = Introduction =
 
-Here is a non-exhaustive list of hash cracking techniques.
+Here is a non-exhaustive table of hash cracking techniques displaying whether they are implemented or not.
 
-
-= Summary =
-  * Brute-force attack
-  * Dictionary attack
-  * Heuristic attack
+|| *Techniques* || *Implemented* ||
+||Brute-force||yes||
+||Dictionary ||yes||
+||Heuristic ||yes||
