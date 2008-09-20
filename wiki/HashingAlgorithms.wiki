@@ -1,8 +1,13 @@
 #summary Hashing Algorithms
+#labels Featured
 
 = Introduction =
 
 Here is a non-exhaustive list of populars hashing algorithms.
 
 
-||table||cells||
+||Algorithm||supported||
+||md4||yes||
+||md5||yes||
+||sha||yes||
+||sha1||yes||
