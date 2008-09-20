@@ -1,5 +1,5 @@
 #summary Cracking Techniques
-#labels cracking,technique,attack,brute-force,dictionary,heuristic
+#labels cracking,technique,attack,brute-force,dictionary,heuristic,Featured
 
 = Introduction =
 
