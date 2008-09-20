@@ -1,0 +1,8 @@
+#summary Hashing Algorithms
+
+= Introduction =
+
+Here is a non-exhaustive list of populars hashing algorithms.
+
+
+||table||cells||
