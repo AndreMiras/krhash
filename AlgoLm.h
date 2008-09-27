@@ -47,6 +47,7 @@ protected:
     
 
 private:
+void setup_des_key(unsigned char key_56[], des_key_schedule ks) const;
 
 };
 
