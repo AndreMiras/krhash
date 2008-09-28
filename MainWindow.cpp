@@ -205,6 +205,8 @@ void MainWindow::createAttack()
         algo = new AlgoSha1();
     else if (algoSett == "Double Md5")
         algo = NULL;
+    else if (algoSett == "Windows LM")
+        algo = new AlgoLm();
     else
         qWarning("Unrecognized Algo Setting");
 

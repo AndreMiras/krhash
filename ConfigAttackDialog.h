@@ -13,10 +13,6 @@
 #include <QDialog>
 #include <QFile>
 
-#include "AbstractAttack.h"
-#include "BrutForceAttack.h"
-#include "DictionaryAttack.h"
-//#include "AbstractAlgo.h"
 #include "ConfigBrutForceWidget.h"
 #include "ConfigAbstractAttackWidget.h"
 #include "ConfigDictionaryWidget.h"

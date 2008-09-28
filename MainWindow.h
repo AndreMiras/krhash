@@ -15,6 +15,7 @@
 #include "AlgoMd4.h"
 #include "AlgoMd5.h"
 #include "AlgoSha1.h"
+#include "AlgoLm.h"
 #include "BrutForceAttack.h"
 #include "DictionaryAttack.h"
 #include "HashListWidget.h"

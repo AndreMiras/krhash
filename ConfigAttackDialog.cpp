@@ -43,6 +43,7 @@ void ConfigAttackDialog::createConfigAttackDialog()
     algoCombobox->addItem(tr("Md5"));
     algoCombobox->addItem(tr("Sha"));
     algoCombobox->addItem(tr("Double Md5"));
+    algoCombobox->addItem(tr("Windows LM"));
     algoCombobox->setCurrentIndex
                     (
                        algoCombobox->findText(settings.value("Algo", "Md5").toString())
