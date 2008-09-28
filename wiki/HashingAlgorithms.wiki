@@ -14,5 +14,5 @@ If you think I should implement a new one just [http://code.google.com/p/krhash/
 ||md5||yes||
 ||sha0||no||
 ||sha1||yes||
-||lm||no||
+||lm||yes||
 ||ntlm||no||
