@@ -65,16 +65,18 @@ void HashListWidget::markHashFound(const QByteArray & hash)
 }
 */
 
-void HashListWidget::markHashFound(const QByteArray & hash)
+void HashListWidget::markHashFound(const QByteArray & hashHex)
 {
     int i = this->count() - 1;
-    QByteArray hashHex = hash.toHex();
+    QByteArray hash = QByteArray::fromHex(hashHex);
+    // std::cout << "Found (Hex): " << qPrintable(QString(hashHex)) << std::endl;
+    // std::cout << "Found (Plain Text): " << qPrintable(QString(attack->getPlain(hash))) << std::endl;
+
     while ( (i >= 0) && (this->item(i)->whatsThis() != hash) )
         i--;
 // FIXME[cleaning]: could be better, I'm sure :)
 // Items removed from a list widget will not be managed by Qt, and will need to be deleted manually.
     this->takeItem(i);
-    // this->insertItem(i, tr(hash) + tr(" : ") + tr(attack->getPlain(hash)));
     this->insertItem(i, tr(hashHex) + tr(" : ") + tr(attack->getPlain(hash)));
     this->item(i)->setWhatsThis(QString(hashHex));
     this->item(i)->setBackground(QBrush(QColor(Qt::green)));
