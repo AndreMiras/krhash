@@ -28,8 +28,7 @@ public:
 
     inline QByteArray hashHumanReadable(const QByteArray* data) const
     { return this->hash(data).toHex(); }
-    
-
+   
     inline QByteArray formatHash(const QByteArray & hash) const
     { return QByteArray::fromHex(hash); }
 
@@ -39,6 +38,8 @@ public:
     /*
      * TODO:    Use Qt provided method
      *          imrpove that tests
+     *          a LM hash is 16 bytes
+     *          I also want it all lower case
      */
     virtual bool isValid(const QByteArray & hash) const;
 
@@ -47,7 +48,12 @@ protected:
     
 
 private:
-void setup_des_key(unsigned char key_56[], des_key_schedule ks) const;
+
+    /*
+     * turns a 56 bit key into the 64 bit, odd parity key and sets the key.
+     * The key schedule ks is also set.
+     */
+    void setup_des_key(unsigned char* key_56, des_key_schedule & ks) const;
 
 };
 
