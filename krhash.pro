@@ -12,6 +12,6 @@ INCLUDEPATH += .
 LIBS += -lssl
 
 # Input
-HEADERS += MainWindow.h AbstractAlgo.h AlgoMd5.h AlgoMd4.h AlgoSha1.h AlgoLm.h AbstractAttack.h BrutForceAttack.h MetaString.h HashListWidget.h CommonAttack.h DictionaryAttack.h MetaString2.h AbstractString.h InfoWidget.h ConfigAttackDialog.h ConfigBrutForceWidget.h ConfigDictionaryWidget.h ConfigAbstractAttackWidget.h
-SOURCES += main.cpp MainWindow.cpp AbstractAlgo.cpp AlgoMd5.cpp AlgoMd4.cpp AlgoSha1.cpp AlgoLm.cpp AbstractAttack.cpp BrutForceAttack.cpp MetaString.cpp HashListWidget.cpp CommonAttack.cpp DictionaryAttack.cpp MetaString2.cpp AbstractString.cpp InfoWidget.cpp ConfigBrutForceWidget.cpp ConfigAttackDialog.cpp ConfigDictionaryWidget.cpp ConfigAbstractAttackWidget.cpp
+HEADERS += MainWindow.h AbstractAlgo.h AlgoMd2.h AlgoMd4.h AlgoMd5.h AlgoSha0.h AlgoSha1.h AlgoLm.h AbstractAttack.h BrutForceAttack.h MetaString.h HashListWidget.h CommonAttack.h DictionaryAttack.h MetaString2.h AbstractString.h InfoWidget.h ConfigAttackDialog.h ConfigBrutForceWidget.h ConfigDictionaryWidget.h ConfigAbstractAttackWidget.h
+SOURCES += main.cpp MainWindow.cpp AbstractAlgo.cpp AlgoMd2.cpp AlgoMd4.cpp AlgoMd5.cpp AlgoSha0.cpp AlgoSha1.cpp AlgoLm.cpp AbstractAttack.cpp BrutForceAttack.cpp MetaString.cpp HashListWidget.cpp CommonAttack.cpp DictionaryAttack.cpp MetaString2.cpp AbstractString.cpp InfoWidget.cpp ConfigBrutForceWidget.cpp ConfigAttackDialog.cpp ConfigDictionaryWidget.cpp ConfigAbstractAttackWidget.cpp
 

@@ -12,8 +12,10 @@
 
 #include "AbstractAttack.h"
 #include "AbstractAlgo.h"
+#include "AlgoMd2.h"
 #include "AlgoMd4.h"
 #include "AlgoMd5.h"
+#include "AlgoSha0.h"
 #include "AlgoSha1.h"
 #include "AlgoLm.h"
 #include "BrutForceAttack.h"
