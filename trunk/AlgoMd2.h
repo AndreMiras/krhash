@@ -1,14 +1,11 @@
 /*
  * TODO:
  *      - use cryptdll.dll on windows
- *
- * READ:
- *      - http://wiki.qtcentre.org/index.php?title=Cryptography
  */
 
 
-#ifndef ALGOMD4_H_
-#define ALGOMD4_H_
+#ifndef ALGOMD2_H_
+#define ALGOMD2_H_
 
 #include "AbstractAlgo.h"
 
@@ -17,24 +14,22 @@
 
 #include <QCryptographicHash>
 
-#include <openssl/md4.h>
+#include <openssl/md2.h>
 
 #include <iostream>
 
 
 class HashType;
 
-class AlgoMd4 : public AbstractAlgo
+class AlgoMd2 : public AbstractAlgo
 {
 
 public:
-    AlgoMd4();
+    AlgoMd2();
 
     QByteArray hash(const QByteArray* data) const;
-    // inline QByteArray hash(const QByteArray & data) const
-    // { return QCryptographicHash::hash(data, QCryptographicHash::Md4); }
 
-    // unsigned char * AlgoMd4::hashSpeed(const QByteArray & data) const;
+    // unsigned char * AlgoMd2::hashSpeed(const QByteArray & data) const;
 
     inline QByteArray hashHumanReadable(const QByteArray* data) const
     { return this->hash(data).toHex(); }
@@ -58,11 +53,10 @@ protected:
     
 
 private:
-   // QCryptographicHash hashResult;
     QByteArray hashResult;
     HashType *ht;
 
 };
 
-#endif /*ALGOMD4_H_*/
+#endif /*ALGOMD2_H_*/
 

@@ -39,9 +39,11 @@ void ConfigAttackDialog::createConfigAttackDialog()
     methodLabel = new QLabel(tr("Method:"));
 
     algoCombobox = new QComboBox();
+    algoCombobox->addItem(tr("Md2"));
     algoCombobox->addItem(tr("Md4"));
     algoCombobox->addItem(tr("Md5"));
-    algoCombobox->addItem(tr("Sha"));
+    algoCombobox->addItem(tr("Sha0"));
+    algoCombobox->addItem(tr("Sha1"));
     algoCombobox->addItem(tr("Double Md5"));
     algoCombobox->addItem(tr("Windows LM"));
     algoCombobox->setCurrentIndex

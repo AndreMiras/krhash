@@ -197,11 +197,15 @@ void MainWindow::createAttack()
      *
      *
      */
-    if (algoSett == "Md5")
-        algo = new AlgoMd5();
+    if (algoSett == "Md2")
+        algo = new AlgoMd2();
     else if (algoSett == "Md4")
         algo = new AlgoMd4();
-    else if (algoSett == "Sha")
+    else if (algoSett == "Md5")
+        algo = new AlgoMd5();
+    else if (algoSett == "Sha0")
+        algo = new AlgoSha0();
+    else if (algoSett == "Sha1")
         algo = new AlgoSha1();
     else if (algoSett == "Double Md5")
         algo = NULL;

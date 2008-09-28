@@ -7,8 +7,8 @@
  */
 
 
-#ifndef ALGOMD4_H_
-#define ALGOMD4_H_
+#ifndef ALGOSHA0_H_
+#define ALGOSHA0_H_
 
 #include "AbstractAlgo.h"
 
@@ -17,24 +17,24 @@
 
 #include <QCryptographicHash>
 
-#include <openssl/md4.h>
+#include <openssl/sha.h>
 
 #include <iostream>
 
 
 class HashType;
 
-class AlgoMd4 : public AbstractAlgo
+class AlgoSha0 : public AbstractAlgo
 {
 
 public:
-    AlgoMd4();
+    AlgoSha0();
 
     QByteArray hash(const QByteArray* data) const;
     // inline QByteArray hash(const QByteArray & data) const
-    // { return QCryptographicHash::hash(data, QCryptographicHash::Md4); }
+    // { return QCryptographicHash::hash(data, QCryptographicHash::Sha); }
 
-    // unsigned char * AlgoMd4::hashSpeed(const QByteArray & data) const;
+    // unsigned char * AlgoSha::hashSpeed(const QByteArray & data) const;
 
     inline QByteArray hashHumanReadable(const QByteArray* data) const
     { return this->hash(data).toHex(); }
@@ -60,9 +60,12 @@ protected:
 private:
    // QCryptographicHash hashResult;
     QByteArray hashResult;
+    //unsigned char finalTest[16];
+    unsigned char* finalTest;
     HashType *ht;
+    // unsigned char * testResult; // convert test
 
 };
 
-#endif /*ALGOMD4_H_*/
+#endif /*ALGOSHA0_H_*/
 
