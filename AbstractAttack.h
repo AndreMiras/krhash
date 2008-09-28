@@ -50,7 +50,8 @@ void addHash(const QList<QByteArray> & hashList);
 
 
 inline void removeHash(const QByteArray & hash)
-{ this->remove(algo->formatHash(hash)); }
+// { this->remove(algo->formatHash(hash)); }
+{ this->remove(hash); }
 /*
 {
     if (this->remove(algo->formatHash(hash)))

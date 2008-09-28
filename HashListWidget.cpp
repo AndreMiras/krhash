@@ -44,10 +44,12 @@ void HashListWidget::createActions()
     connect(removeAllHashesAct, SIGNAL(triggered()), this, SLOT(removeAllHashes()));
 }
 
-QListWidgetItem* HashListWidget::createHashItem(const QByteArray & hash)
+QListWidgetItem* HashListWidget::createHashItem(const QByteArray & hashHex)
 {
-    hashItem = new QListWidgetItem(QString(hash));
-    hashItem->setText(QString(hash));
+    QByteArray hash = QByteArray::fromHex(hashHex);
+
+    hashItem = new QListWidgetItem(QString(hashHex));
+    hashItem->setText(QString(hashHex));
     hashItem->setWhatsThis(QString(hash));
     hashItem->setBackground(QBrush(QColor(Qt::blue)));
     return hashItem;
@@ -66,13 +68,15 @@ void HashListWidget::markHashFound(const QByteArray & hash)
 void HashListWidget::markHashFound(const QByteArray & hash)
 {
     int i = this->count() - 1;
+    QByteArray hashHex = hash.toHex();
     while ( (i >= 0) && (this->item(i)->whatsThis() != hash) )
         i--;
 // FIXME[cleaning]: could be better, I'm sure :)
 // Items removed from a list widget will not be managed by Qt, and will need to be deleted manually.
     this->takeItem(i);
-    this->insertItem(i, tr(hash) + tr(" : ") + tr(attack->getPlain(hash)));
-    this->item(i)->setWhatsThis(QString(hash));
+    // this->insertItem(i, tr(hash) + tr(" : ") + tr(attack->getPlain(hash)));
+    this->insertItem(i, tr(hashHex) + tr(" : ") + tr(attack->getPlain(hash)));
+    this->item(i)->setWhatsThis(QString(hashHex));
     this->item(i)->setBackground(QBrush(QColor(Qt::green)));
 }
 
@@ -81,14 +85,14 @@ void HashListWidget::markHashItem(const QByteArray & hash, bool cracked)
 
 }
 
-void HashListWidget::addHash(const QByteArray & hash)
+void HashListWidget::addHash(const QByteArray & hashHex)
 {
-    std::cout << ">Trying to add: " << qPrintable(QString(hash));
-    if (this->attack->isValid(hash))
+    std::cout << ">Trying to add: " << qPrintable(QString(hashHex));
+    if (this->attack->isValid(hashHex))
     {
         std::cout << " [ok]" << std::endl;
-        this->addItem(createHashItem(hash));
-        attack->addHash(hash);
+        this->addItem(createHashItem(hashHex));
+        attack->addHash(hashHex);
         emit hashAdded();
     }
     else

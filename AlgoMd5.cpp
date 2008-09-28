@@ -15,7 +15,7 @@ AlgoMd5::AlgoMd5() : AbstractAlgo()
     ht = new HashType;
     MD5_Init(&ht->md5Context);
     // FIXME[cleaning]: probably not the good way
-    hashResult.reserve(16);
+    hashResult.resize(16);
     finalTest = new unsigned char[16];
 }
 
