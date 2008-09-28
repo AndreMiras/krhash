@@ -9,48 +9,37 @@ AlgoLm::AlgoLm() : AbstractAlgo()
 
 QByteArray AlgoLm::hash(const QByteArray* data) const
 {
-    std::cout << "Lm" << std::endl;
-/* setup LanManager password */
-
-    // char  lm_pw[14];
     unsigned char  lm_pw[14];
-    // int   len = strlen(data->constData());
     int   len = data->size();
+
     if (len > 14)  len = 14;
 
-    for (int idx=0; idx<len; idx++)
+    for (int idx=0; idx < len; idx++)
         lm_pw[idx] = toupper(data->at(idx));
-    for (int idx=len; idx<14; idx++)
+    for (int idx=len; idx < 14; idx++)
         lm_pw[idx] = 0;
 
-    /* create LanManager hashed password */
-
     unsigned char magic[] = { 0x4B, 0x47, 0x53, 0x21, 0x40, 0x23, 0x24, 0x25 };
+    // static const_des_cblock magic[] = { 0x4B, 0x47, 0x53, 0x21, 0x40, 0x23, 0x24, 0x25 };
     unsigned char lm_hpw[21];
     des_key_schedule ks;
 
     setup_des_key(lm_pw, ks);
-    // setup_des_key((unsigned char*)lm_pw, ks);
     des_ecb_encrypt((des_cblock*)magic, (des_cblock*)lm_hpw, ks, DES_ENCRYPT);
 
-    setup_des_key(lm_pw+7, ks);
-    // setup_des_key((unsigned char*)lm_pw+7, ks);
-    // des_ecb_encrypt((des_cblock*)magic, lm_hpw+8, ks, DES_ENCRYPT);
-    // FIXME: might be wrong
-    des_ecb_encrypt((des_cblock*)magic, (des_cblock*)lm_hpw+8, ks, DES_ENCRYPT);
 
-    memset(lm_hpw+16, 0, 5);
+    setup_des_key(&lm_pw[7], ks);
+    des_ecb_encrypt((des_cblock*)magic, (des_cblock*)&lm_hpw[8], ks, DES_ENCRYPT);
+
+    memset(&lm_hpw[16], 0, 5);
+
     QByteArray ba((char *)lm_hpw);
 
     return ba;
 }
 
 
-/*
- * turns a 56 bit key into the 64 bit, odd parity key and sets the key.
- * The key schedule ks is also set.
- */
-void AlgoLm::setup_des_key(unsigned char key_56[], des_key_schedule ks) const
+void AlgoLm::setup_des_key(unsigned char* key_56, des_key_schedule & ks) const
 {
     des_cblock key;
 
@@ -65,6 +54,7 @@ void AlgoLm::setup_des_key(unsigned char key_56[], des_key_schedule ks) const
 
     des_set_odd_parity(&key);
     des_set_key(&key, ks);
+    // memset(&key, 0, sizeof(key));
 }
 
 
