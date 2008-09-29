@@ -15,4 +15,4 @@ If you think I should implement a new one just [http://code.google.com/p/krhash/
 ||sha0||yes||
 ||sha1||yes||
 ||lm||yes||
-||ntlm||no||
+||ntlm||yes||
