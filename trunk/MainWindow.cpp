@@ -211,6 +211,8 @@ void MainWindow::createAttack()
         algo = NULL;
     else if (algoSett == "Windows LM")
         algo = new AlgoLm();
+    else if (algoSett == "Windows NTLM")
+        algo = new AlgoNtlm();
     else
         qWarning("Unrecognized Algo Setting");
 

@@ -42,10 +42,11 @@ void ConfigAttackDialog::createConfigAttackDialog()
     algoCombobox->addItem(tr("Md2"));
     algoCombobox->addItem(tr("Md4"));
     algoCombobox->addItem(tr("Md5"));
+    // algoCombobox->addItem(tr("Double Md5"));
     algoCombobox->addItem(tr("Sha0"));
     algoCombobox->addItem(tr("Sha1"));
-    algoCombobox->addItem(tr("Double Md5"));
     algoCombobox->addItem(tr("Windows LM"));
+    algoCombobox->addItem(tr("Windows NTLM"));
     algoCombobox->setCurrentIndex
                     (
                        algoCombobox->findText(settings.value("Algo", "Md5").toString())
