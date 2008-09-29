@@ -1,5 +1,5 @@
 #summary Hashing Algorithms
-#labels Featured
+#labels Featured,Algorithm,md2,md4,md5,sha0,sha1,lm,ntlm
 
 = Introduction =
 
