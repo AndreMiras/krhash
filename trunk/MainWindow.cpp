@@ -246,7 +246,7 @@ void MainWindow::createAttack()
 */
 
     connect(attack, SIGNAL(hashFound()), infoWidget, SLOT(hashFound()));
-    connect(attack, SIGNAL(hashFound(QByteArray)), hashListWidget, SLOT(markHashFound(QByteArray)));
+    connect(attack, SIGNAL(hashFound(QByteArray, QByteArray)), hashListWidget, SLOT(markHashFound(QByteArray, QByteArray)));
     connect(attack, SIGNAL(advancementChanged(int)), infoWidget, SLOT(setAdvancement(int)));
     connect(attack, SIGNAL(hashRateChanged(int)), infoWidget, SLOT(setHashRate(int)));
     connect(attack, SIGNAL(finished()), this, SLOT(attackFinished()));

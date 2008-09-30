@@ -44,7 +44,7 @@ void AbstractAttack::addFoundHash(const QString & plainText)
 
     removeHash(hash);
     foundHash.insert(hash, plainText);
-    emit hashFound(hash.toHex());
+    emit hashFound(hash.toHex(), plainText.toAscii());
     emit hashFound();
 }
 

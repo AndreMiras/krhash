@@ -99,7 +99,7 @@ QList<QByteArray> notFound() const;
 
 
 signals:
-    void hashFound(QByteArray hash);
+    void hashFound(QByteArray hash, QByteArray plainText);
     void hashFound();
     void advancementChanged(int advancement) const;
     void hashRateChanged(int rate) const;
