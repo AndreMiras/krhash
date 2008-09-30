@@ -1,6 +1,6 @@
 /*
  * NOTE:    Let you crack a list of hash
- *          As we could use different attack Dic, Brut Force, Meet In The Middle and so one
+ *          As we could use different attack Dictionary, Brute Force, Vuln-Based and so on,
  *          it's interesting to have an AbstractAttack Class and redefine some methods
  *
  *

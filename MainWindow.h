@@ -19,7 +19,7 @@
 #include "AlgoSha1.h"
 #include "AlgoLm.h"
 #include "AlgoNtlm.h"
-#include "BrutForceAttack.h"
+#include "BruteForceAttack.h"
 #include "DictionaryAttack.h"
 #include "HashListWidget.h"
 #include "InfoWidget.h"

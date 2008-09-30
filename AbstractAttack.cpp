@@ -87,7 +87,14 @@ void AbstractAttack::stopAttack()
 
 QByteArray AbstractAttack::getPlain(const QByteArray & hash) const
 {
-    return foundHash.value(QString(hash)).toAscii();
+    QString plainText = foundHash.value(QString(hash));
+    if (!plainText.isEmpty())
+        return plainText.toAscii();
+    qWarning("Can't get the plain text corresponding to this hash.\n");
+    qWarning("This is a bug, I guess the cracker didn't have time to write into foundHash Object before we actually read it.\n");
+    qWarning("For hash: %s", hash.toHex());
+    return "[KrHash bug]";
+    // return foundHash.value(QString(hash)).toAscii();
 }
 
 QList<QByteArray> AbstractAttack::notFound() const
