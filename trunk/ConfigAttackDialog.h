@@ -13,7 +13,7 @@
 #include <QDialog>
 #include <QFile>
 
-#include "ConfigBrutForceWidget.h"
+#include "ConfigBruteForceWidget.h"
 #include "ConfigAbstractAttackWidget.h"
 #include "ConfigDictionaryWidget.h"
 

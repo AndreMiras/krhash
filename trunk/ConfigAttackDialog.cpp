@@ -54,12 +54,12 @@ void ConfigAttackDialog::createConfigAttackDialog()
 
     methodCombobox = new QComboBox();
     methodCombobox->addItem(tr("Dictionary"));
-    methodCombobox->addItem(tr("Brut Force"));
+    methodCombobox->addItem(tr("Brute Force"));
     methodCombobox->addItem(tr("*Vuln* Based"));
     methodCombobox->setCurrentIndex
                     (
                         // FIXME translating
-                       methodCombobox->findText(settings.value("Method", "Brut Force").toString())
+                       methodCombobox->findText(settings.value("Method", "Brute Force").toString())
                     );
 
 //    methodCombobox->setEnabled(false);
@@ -68,13 +68,13 @@ void ConfigAttackDialog::createConfigAttackDialog()
 // FIXME
 // configMethodWidgetList = new QList<ConfigAbstractAttackWidget*>;
     configMethodWidgetList->append(new ConfigDictionaryWidget());
-    configMethodWidgetList->append(new ConfigBrutForceWidget());
+    configMethodWidgetList->append(new ConfigBruteForceWidget());
     stackedWidget = new QStackedWidget;
     stackedWidget->addWidget(configMethodWidgetList->at(0));
     stackedWidget->addWidget(configMethodWidgetList->at(1));
     stackedWidget->setCurrentIndex(methodCombobox->currentIndex());
 //    stackedWidget->addWidget(new ConfigDictionaryWidget());
-//    stackedWidget->addWidget(new ConfigBrutForceWidget());
+//    stackedWidget->addWidget(new ConfigBruteForceWidget());
 
     acceptButton = new QPushButton(tr("Accept"));
     cancelButton = new QPushButton(tr("Cancel"));
