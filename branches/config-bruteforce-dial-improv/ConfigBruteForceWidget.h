@@ -43,7 +43,6 @@ private:
 //    QVBoxLayout *vbox;
     QVBoxLayout* mainVLayout;
     QHBoxLayout* fromToHBoxLayout;
-    QHBoxLayout* charsetHBoxLayout; // FIXME[cleaning]: not used anymore
     QGridLayout* charsetGridLayout;
     QGridLayout* charsetCheckBoxLayout;
     QWidget* fromToWidget;
@@ -71,6 +70,7 @@ private slots:
      *
      */
     void updateCustom();
+    void customToggled(bool checked);
 };
 
 #endif

@@ -32,19 +32,12 @@ void ConfigBruteForceWidget::createConfigBruteForceWidget()
     charsetLineEdit->setFixedWidth(200);
     // FIXME: take QSettings if set, from default charset if not
     charsetLineEdit->setText("abcdefghijklmnopqrstuvwxyz");
-    charsetHBoxLayout = new QHBoxLayout();
-    charsetHBoxLayout->addWidget(charsetLabel);
-    charsetHBoxLayout->addWidget(charsetLineEdit);
-    // charsetWidget->setLayout(charsetHBoxLayout);
 
 
     connect(numericsCheckBox, SIGNAL(clicked()), this, SLOT(updateCustom()));
     connect(alphaLowerCheckBox, SIGNAL(clicked()), this, SLOT(updateCustom()));
     connect(alphaUpperCheckBox, SIGNAL(clicked()), this, SLOT(updateCustom()));
-
-    // TODO: use it to set the focus too
-    // connect(customCheckBox, SIGNAL(clicked()), this, SLOT(updateCustom()));
-    connect(customCheckBox, SIGNAL(toggled(bool)), charsetLineEdit, SLOT(setEnabled(bool)));
+    connect(customCheckBox, SIGNAL(toggled(bool)), this, SLOT(customToggled(bool)));
 
     
     charsetGridLayout = new QGridLayout();
@@ -90,6 +83,7 @@ void ConfigBruteForceWidget::createConfigBruteForceWidget()
     setMinimumSize(300, 200);
 //    setFixedSize(300, 300);
 //    configGroupBox->setFixedSize(QSize(300, 100));
+    initWidgetStates();
     resize(minimumSizeHint());
 }
 
@@ -99,13 +93,16 @@ void ConfigBruteForceWidget::writeSettings()
     settings.setValue("Charset", charsetLineEdit->text());
     settings.setValue("CharsetFrom", lengthFromSpinBox->value());
     settings.setValue("CharsetTo", lengthToSpinBox->value());
+
+    settings.setValue("numericsCheckBox", numericsCheckBox->isChecked());
+    settings.setValue("alphaLowerCheckBox", alphaLowerCheckBox->isChecked());
+    settings.setValue("alphaUpperCheckBox", alphaUpperCheckBox->isChecked());
+    settings.setValue("customCheckBoxCheckBox", customCheckBox->isChecked());
 }
 
 
 void ConfigBruteForceWidget::updateCustom()
 {
-    std::cout << "ConfigBruteForceWidget::updateCustom" << std::endl;
-
     charsetLineEdit->clear();
 
     if (numericsCheckBox->isChecked())
@@ -116,9 +113,24 @@ void ConfigBruteForceWidget::updateCustom()
         charsetLineEdit->insert("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 }
 
+void ConfigBruteForceWidget::customToggled(bool checked)
+{
+    numericsCheckBox->setEnabled(not checked);
+    alphaLowerCheckBox->setEnabled(not checked);
+    alphaUpperCheckBox->setEnabled(not checked);
+    charsetLineEdit->setEnabled(checked);
+    charsetLineEdit->setFocus();
+}
+
 void ConfigBruteForceWidget::initWidgetStates()
 {
     QSettings settings("u54", "KrHash");
+    numericsCheckBox->setChecked(settings.value("numericsCheckBox", false).toBool());
+    alphaLowerCheckBox->setChecked(settings.value("alphaLowerCheckBox", true).toBool());
+    alphaUpperCheckBox->setChecked(settings.value("alphaUpperCheckBox", false).toBool());
+    customCheckBox->setChecked(settings.value("customCheckBox", false).toBool());
+    customToggled(customCheckBox->isChecked());
+    updateCustom();
 }
 
 
