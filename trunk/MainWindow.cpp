@@ -184,11 +184,15 @@ void MainWindow::createAttack()
 
     // FIXME: use a switch case instead
     if (methodSett == "Brut Force")
-        attack = new BrutForceAttack();
+        attack = new BruteForceAttack();
     else if (methodSett == "Dictionary")
         attack = new DictionaryAttack();
     else
-        qWarning("Unrecognized Method Setting");
+    {
+        qWarning("Unrecognized Method Setting.\n");
+        qWarning("Setting up BruteForce Attack.\n");
+        attack = new BruteForceAttack();
+    }
 
     /*
      * FIXME[cleaning]: should define algo once in some file
@@ -214,7 +218,11 @@ void MainWindow::createAttack()
     else if (algoSett == "Windows NTLM")
         algo = new AlgoNtlm();
     else
-        qWarning("Unrecognized Algo Setting");
+    {
+        qWarning("Unrecognized Algo Setting.\n");
+        qWarning("Setting up Md5 Algo.\n");
+        algo = new AlgoMd5();
+    }
 
     attack->setAlgo(algo);
     hashListWidget->setAttack(attack);
