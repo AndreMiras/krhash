@@ -24,8 +24,6 @@ void CommonAttack::run()
             this->addFoundHash(QString(*currentString));
         cpt--;
     }
-    std::cout << "this->empty(): " << this->empty() << std::endl;
-    std::cout << "cpt: " << cpt << std::endl;
 }
 
 int CommonAttack::getAdvancement() const

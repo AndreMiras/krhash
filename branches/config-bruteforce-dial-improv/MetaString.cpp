@@ -89,7 +89,7 @@ MetaString & MetaString::operator++()
      * TODO:    emit when inserting (for output)
      *          see if at() quicker than an other one
      */
-    if ( (i == 0) && (this->at(0) == 'a' ) )
+    if ( (i == 0) && (this->at(0) == minValue() ) )
     {
         lastIndex[this->length() - (i+1)] = 1;
         this->prepend(this->a_minValue);
