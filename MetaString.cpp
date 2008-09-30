@@ -167,6 +167,7 @@ double MetaString::computeTotal() const
 void MetaString::setCharset(const QByteArray charset)
 {
     userCharset = QByteArray(charset);
+    std::cout << "Charset: " << qPrintable(QString(charset)) << std::endl;
     updateString();
 }
 

@@ -74,7 +74,7 @@ private:
     // Needed only if I call it in the constructor of the Abstract class
     // what the best way to param like path to dic or charset or even algo?
     // should use the QSettings in each class
-    void init();
+    // void init();
 
 //    AbstractAlgo *algo;
     QString charset;
