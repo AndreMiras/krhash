@@ -171,7 +171,7 @@ void MainWindow::createConnections()
 void MainWindow::createAttack()
 {
     QSettings settings("u54", "KrHash");
-    QString methodSett = settings.value("Method", "Brut Force").toString();
+    QString methodSett = settings.value("Method", "Brute Force").toString();
     QString algoSett = settings.value("Algo", "Md5").toString();
 
     // FIXME: use Class::type with this switch (See tablet Example "case QEvent::TabletPress:")
@@ -183,7 +183,7 @@ void MainWindow::createAttack()
     }
 
     // FIXME: use a switch case instead
-    if (methodSett == "Brut Force")
+    if (methodSett == "Brute Force")
         attack = new BruteForceAttack();
     else if (methodSett == "Dictionary")
         attack = new DictionaryAttack();

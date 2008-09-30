@@ -8,8 +8,8 @@
  */
 
 
-#ifndef BRUTFORCEATTACK_H_
-#define BRUTFORCEATTACK_H_
+#ifndef BRUTEFORCEATTACK_H_
+#define BRUTEFORCEATTACK_H_
 
 #include "CommonAttack.h"
 #include "AbstractAlgo.h"
@@ -22,14 +22,14 @@
 #include <QByteArray>
 #include <QSettings>
 
-class BrutForceAttack : /* public AbstractAttack */ public CommonAttack
+class BruteForceAttack : /* public AbstractAttack */ public CommonAttack
 {
 
 public:
-    BrutForceAttack();
-//    BrutForceAttack(AbstractAlgo * algo);
+    BruteForceAttack();
+//    BruteForceAttack(AbstractAlgo * algo);
 
-    ~BrutForceAttack();
+    ~BruteForceAttack();
 
 //    setCharset();
 
@@ -112,12 +112,12 @@ private:
 
     /*
      *
-     * Should use a inheritence and mother class for these both (dic/brutforce)
+     * Should use a inheritence and mother class for these both (dic/bruteforce)
      * as it's two different methods which are doing quiet same thing
      *
      */
-//QByteArray BrutForceAttack::nextStringFromDic {}
-//QByteArray BrutForceAttack::nextString() {}
+//QByteArray BruteForceAttack::nextStringFromDic {}
+//QByteArray BruteForceAttack::nextString() {}
     /*
      * Action:  use charset and currentString to compute next string
      *
@@ -132,5 +132,5 @@ private:
 
 };
 
-#endif /*BRUTFORCEATTACK_H_*/
+#endif /*BRUTEFORCEATTACK_H_*/
 

@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef CONFIGBRUTFORCEWIDGET_H
-#define CONFIGBRUTFORCEWIDGET_H
+#ifndef CONFIGBRUTEFORCEWIDGET_H
+#define CONFIGBRUTEFORCEWIDGET_H
 #include <QWidget>
 
 // #include "AbstractAttack.h"
@@ -24,13 +24,13 @@ class QHBoxLayout;
 class QLineEdit;
 class QSpinBox;
 
-class ConfigBrutForceWidget : public ConfigAbstractAttackWidget
+class ConfigBruteForceWidget : public ConfigAbstractAttackWidget
 {
     Q_OBJECT
 
 public:
-//    ConfigBrutForceWidget(AbstractAttack* attack, AbstractAlgo* algo, QWidget* parent = 0);
-    ConfigBrutForceWidget(QWidget* parent = 0);
+//    ConfigBruteForceWidget(AbstractAttack* attack, AbstractAlgo* algo, QWidget* parent = 0);
+    ConfigBruteForceWidget(QWidget* parent = 0);
 
 //public slots:
     void writeSettings();
@@ -51,7 +51,7 @@ private:
     QSpinBox* lengthFromSpinBox;
     QSpinBox* lengthToSpinBox;
     
-    void createConfigBrutForceWidget();
+    void createConfigBruteForceWidget();
 };
 
 #endif

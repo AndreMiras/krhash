@@ -1,18 +1,18 @@
-#include "ConfigBrutForceWidget.h"
+#include "ConfigBruteForceWidget.h"
 
 #include <QtGui>
 
 
-// ConfigBrutForceWidget::ConfigBrutForceWidget(BrutForceAttack* attack, AbstractAlgo* algo, QWidget* parent) : ConfigAbstractAttackWidget(parent)
-ConfigBrutForceWidget::ConfigBrutForceWidget(QWidget* parent) : ConfigAbstractAttackWidget(parent)
+// ConfigBruteForceWidget::ConfigBruteForceWidget(BruteForceAttack* attack, AbstractAlgo* algo, QWidget* parent) : ConfigAbstractAttackWidget(parent)
+ConfigBruteForceWidget::ConfigBruteForceWidget(QWidget* parent) : ConfigAbstractAttackWidget(parent)
 {
-    createConfigBrutForceWidget();
+    createConfigBruteForceWidget();
 }
 
-void ConfigBrutForceWidget::createConfigBrutForceWidget()
+void ConfigBruteForceWidget::createConfigBruteForceWidget()
 {
     QSettings settings("u54", "KrHash");
-    configGroupBox = new QGroupBox(tr("Config Brut Force Method"), this);
+    configGroupBox = new QGroupBox(tr("Config Brute Force Method"), this);
     charsetLabel = new QLabel(tr("Charset:"));
     lengthFromLabel = new QLabel(tr("From:"));
     lengthToLabel = new QLabel(tr("To:"));
@@ -63,7 +63,7 @@ void ConfigBrutForceWidget::createConfigBrutForceWidget()
     resize(minimumSizeHint());
 }
 
-void ConfigBrutForceWidget::writeSettings()
+void ConfigBruteForceWidget::writeSettings()
 {
     QSettings settings("u54", "KrHash");
     settings.setValue("Charset", charsetLineEdit->text());
