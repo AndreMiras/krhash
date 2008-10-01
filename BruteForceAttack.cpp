@@ -17,14 +17,4 @@ BruteForceAttack::~BruteForceAttack()
 }
 
 
-void BruteForceAttack::init()
-{
-    QSettings settings("u54", "KrHash");
-    // FIXME: use a defaultCharset() to set the default value
-    QString tmpCharset(settings.value("Charset", "abcdefghijklmnopqrstuvwxyz").toString());
-    QString tmpFrom(settings.value("From", "0").toInt());
-    QString tmpTo(settings.value("To", "6").toInt());
-    currentString = new MetaString();
-}
-
 
