@@ -111,7 +111,7 @@ void HashListWidget::removeHash(const QByteArray & hash)
     attack->removeHash(hash);
     emit hashRemoved();
     std::cout << "Trying to remove ["
-    << qPrintable(QString(hash))
+    << qPrintable(QString(hash.toHex()))
     << "]" << std::endl;
 }
 
@@ -149,6 +149,9 @@ void HashListWidget::removeSelectedHashes()
 void HashListWidget::removeAllHashes()
 {
     std::cout << "Removing All Hashes" << std::endl;
+    // FIXME[cleaning]: using the whatsThis() could be confusing for the user as it
+    // could sometimes be "hash : plain" so that the verbose will write some
+    // silly things...
     for (int i = this->count() - 1; i >= 0; --i)
         removeHash(this->item(i)->whatsThis().toAscii());
 }
