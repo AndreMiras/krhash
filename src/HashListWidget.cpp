@@ -43,9 +43,9 @@ QListWidgetItem* HashListWidget::createHashItem(const QByteArray & hashHex)
 {
     QByteArray hash = QByteArray::fromHex(hashHex);
 
-    hashItem = new QListWidgetItem(QString(hashHex));
-    hashItem->setText(QString(hashHex));
-    hashItem->setWhatsThis(QString(hash));
+    hashItem = new QListWidgetItem(hashHex);
+    hashItem->setText(hashHex);
+    hashItem->setWhatsThis(hash);
     hashItem->setBackground(QBrush(QColor(Qt::blue)));
     return hashItem;
 }
@@ -69,11 +69,7 @@ void HashListWidget::markHashFound(const QByteArray & hashHex, const QByteArray 
 
     while ( (i >= 0) && (this->item(i)->whatsThis() != hash) )
         i--;
-// FIXME[cleaning]: could be better, I'm sure :)
-// Items removed from a list widget will not be managed by Qt, and will need to be deleted manually.
-    this->takeItem(i);
-    this->insertItem(i, tr(hashHex) + tr(" : ") + plainText);
-    this->item(i)->setWhatsThis(QString(hashHex));
+    this->item(i)->setText(hashHex + " : " + plainText);
     this->item(i)->setBackground(QBrush(QColor(Qt::green)));
 }
 
@@ -101,10 +97,11 @@ void HashListWidget::removeHash(const QByteArray & hash)
     int i = this->count() - 1;
     while ( (i >= 0) && (this->item(i)->whatsThis() != hash) )
         i--;
+    bool wasCracked = (item(i)->whatsThis().toAscii().toHex() != item(i)->text());
 // FIXME[cleaning]: 'Items removed from a list widget will not be managed by Qt, and will need to be deleted manually'
     this->takeItem(i);
     attack->removeHash(hash);
-    emit hashRemoved();
+    emit hashRemoved(wasCracked);
     std::cout << "Trying to remove ["
     << qPrintable(QString(hash.toHex()))
     << "]" << std::endl;
@@ -139,9 +136,6 @@ void HashListWidget::removeSelectedHashes()
 void HashListWidget::removeAllHashes()
 {
     std::cout << "Removing All Hashes" << std::endl;
-    // FIXME[cleaning]: using the whatsThis() could be confusing for the user as it
-    // could sometimes be "hash : plain" so that the verbose will write some
-    // silly things...
     for (int i = this->count() - 1; i >= 0; --i)
         removeHash(this->item(i)->whatsThis().toAscii());
 }

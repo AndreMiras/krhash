@@ -29,6 +29,7 @@ public:
 
 public slots:
     void addHash();
+    void removeHash(bool wasCracked);
     void hashFound();
     void setAdvancement(int advancement);
     void setHashRate(int rate);
