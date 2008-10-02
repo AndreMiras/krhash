@@ -44,8 +44,8 @@ public:
 
 public slots:
     void addHash(const QByteArray & hash);
-    void removeHash(const QByteArray & hash);
-    void markHashFound(const QByteArray & hash, const QByteArray plainText);
+    void removeHash(const QByteArray & hashHex);
+    void markHashFound(const QByteArray & hashHex, const QByteArray plainText);
     void removeSelectedHashes();
     void removeAllHashes();
 

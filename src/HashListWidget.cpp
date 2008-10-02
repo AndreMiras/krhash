@@ -45,7 +45,7 @@ QListWidgetItem* HashListWidget::createHashItem(const QByteArray & hashHex)
 
     hashItem = new QListWidgetItem(hashHex);
     hashItem->setText(hashHex);
-    hashItem->setWhatsThis(hash);
+    hashItem->setWhatsThis(hashHex);
     hashItem->setBackground(QBrush(QColor(Qt::blue)));
     return hashItem;
 }
@@ -67,7 +67,7 @@ void HashListWidget::markHashFound(const QByteArray & hashHex, const QByteArray 
     // std::cout << "Found (Hex): " << qPrintable(QString(hashHex)) << std::endl;
     // std::cout << "Found (Plain Text): " << qPrintable(QString(attack->getPlain(hash))) << std::endl;
 
-    while ( (i >= 0) && (this->item(i)->whatsThis() != hash) )
+    while ( (i >= 0) && (this->item(i)->whatsThis() != hashHex) )
         i--;
     this->item(i)->setText(hashHex + " : " + plainText);
     this->item(i)->setBackground(QBrush(QColor(Qt::green)));
@@ -92,18 +92,19 @@ void HashListWidget::addHash(const QByteArray & hashHex)
         std::cout << " [error]" << std::endl;
 }
 
-void HashListWidget::removeHash(const QByteArray & hash)
+void HashListWidget::removeHash(const QByteArray & hashHex)
 {
     int i = this->count() - 1;
-    while ( (i >= 0) && (this->item(i)->whatsThis() != hash) )
+    QByteArray hash = QByteArray::fromHex(hashHex);
+    while ( (i >= 0) && (this->item(i)->whatsThis() != hashHex) )
         i--;
-    bool wasCracked = (item(i)->whatsThis().toAscii().toHex() != item(i)->text());
+    bool wasCracked = (item(i)->whatsThis().toAscii() != item(i)->text());
 // FIXME[cleaning]: 'Items removed from a list widget will not be managed by Qt, and will need to be deleted manually'
     this->takeItem(i);
     attack->removeHash(hash);
     emit hashRemoved(wasCracked);
     std::cout << "Trying to remove ["
-    << qPrintable(QString(hash.toHex()))
+    << qPrintable(QString(hashHex))
     << "]" << std::endl;
 }
 
