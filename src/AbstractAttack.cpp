@@ -11,8 +11,10 @@ AbstractAttack::AbstractAttack(AbstractAlgo * algo) : QSet<QByteArray>()
 
     // TODO: put all of that in some updateStatus
     // updateStatus update adv, rate, current string and status
-    connect(advancementTimer, SIGNAL(timeout()), this, SLOT(updateAdvancement()));
-    connect(advancementTimer, SIGNAL(timeout()), this, SLOT(updateHashRate()));
+    // connect(advancementTimer, SIGNAL(timeout()), this, SLOT(updateAdvancement()));
+    // connect(advancementTimer, SIGNAL(timeout()), this, SLOT(updateHashRate()));
+    connect(advancementTimer, SIGNAL(timeout()), this, SLOT(updateStatus()));
+    connect(this, SIGNAL(hashFound()), this, SLOT(updateStatus()));
     connect(this, SIGNAL(started()), advancementTimer, SLOT(start()));
     connect(this, SIGNAL(finished()), advancementTimer, SLOT(stop()));
     // TODO: make this interval configurable using the interface
@@ -119,12 +121,8 @@ int AbstractAttack::getHashRate() const
     return 0;
 }
 
-void AbstractAttack::updateAdvancement() const
-{
-    emit advancementChanged(getAdvancement());
-}
-
-void AbstractAttack::updateHashRate() const
+void AbstractAttack::updateStatus() const
 {
     emit hashRateChanged(getHashRate());
+    emit advancementChanged(getAdvancement());
 }
