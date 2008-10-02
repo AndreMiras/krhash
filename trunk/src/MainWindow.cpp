@@ -164,6 +164,7 @@ void MainWindow::createConnections()
     connect(addHashLineEdit, SIGNAL(returnPressed()), this, SLOT(appendHash()));
     connect(addHashButton, SIGNAL(clicked()), this, SLOT(appendHash()));
     connect(hashListWidget, SIGNAL(hashAdded()), infoWidget, SLOT(addHash()));
+    connect(hashListWidget, SIGNAL(hashRemoved(bool)), infoWidget, SLOT(removeHash(bool)));
     connect(configAttackDialog, SIGNAL(accepted()), this, SLOT(createAttack()));
 }
 

@@ -75,6 +75,12 @@ void InfoWidget::addHash()
 {
     totalHashValueLabel->setNum(++numbOfHash);
 }
+void InfoWidget::removeHash(bool wasCracked)
+{
+    totalHashValueLabel->setNum(--numbOfHash);
+    if (wasCracked)
+        foundHashValueLabel->setNum(--numbOfHashFound);
+}
 
 void InfoWidget::hashFound()
 {

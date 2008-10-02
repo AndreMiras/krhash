@@ -51,7 +51,7 @@ public slots:
 
 signals:
     void hashAdded();
-    void hashRemoved();
+    void hashRemoved(bool cracked);
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
