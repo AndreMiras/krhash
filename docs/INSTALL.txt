@@ -1,0 +1,35 @@
+= KrHash From the sources =
+
+Theses install instructions are for Linux.
+Currently the binary produced for Windows is cross-compiled from Linux.
+
+
+== Getting the sources ==
+
+Download the last stable:
+http://code.google.com/p/krhash/downloads/list
+
+Or checkout the code:
+http://code.google.com/p/krhash/source/checkout
+
+Here is a quick list of the dependencies:
+    - Qt lib (trolltech) 
+    - openssl
+
+
+== Compiling the sources ==
+
+$ cd src/
+$ make
+
+
+== Installing ==
+
+There are currently no installing process.
+You fell free to move it to any local PATH or to change your PATH
+
+
+== Running ==
+
+You can call the binary from the shell or directly by clicking on it.
+$ ./krhash

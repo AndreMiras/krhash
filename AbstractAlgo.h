@@ -1,9 +1,8 @@
 #ifndef ABSTRACTALGO_H_
 #define ABSTRACTALGO_H_
 
-#include <QByteArray>
+class QByteArray;
 
-#include <iostream>
 
 // Should Crack inherit AbstractAlgo ?
 class AbstractAlgo
@@ -11,6 +10,7 @@ class AbstractAlgo
 
 public:
     AbstractAlgo();
+    ~AbstractAlgo();
     /*
      * Time:    3732ms (28790448 tested) for dynamically linked NULL function
      *          2908ms (28790448 tested) for pre-linked NULL function

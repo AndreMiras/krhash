@@ -3,7 +3,6 @@
 
 AbstractString::AbstractString() : QByteArray()
 {
-    std::cout << "AbstractString::Constructed:" << std::endl;
     computedTotal = -1;
 }
 
@@ -19,10 +18,7 @@ AbstractString::AbstractString(const char * str) : QByteArray(str)
 // AbstractString::AbstractString(const QByteArray & other) : QByteArray(other) { }
 
 
-AbstractString::~AbstractString()
-{
-    std::cout << "AbstractString::Destructed:" << std::endl;
-}
+AbstractString::~AbstractString() { }
 
 
 double AbstractString::total()

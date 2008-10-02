@@ -10,7 +10,6 @@
 #include "AbstractAlgo.h"
 
 #include <QByteArray>
-#include <QString>
 
 #include <openssl/des.h>
 

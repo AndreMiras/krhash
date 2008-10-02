@@ -7,18 +7,16 @@
 
 #ifndef INFOWIDGET_H
 #define INFOWIDGET_H
-#include <QWidget>
-#include <QFile>
 
-#include "AbstractAttack.h"
+#include <QWidget>
+#include <QLabel>
+#include <QSettings>
+#include <QGroupBox>
+#include <QVBoxLayout>
+#include <QGridLayout>
 
 #include <iostream>
-//#include <QGroupBox>
 
-class QGroupBox;
-class QLabel;
-class QVBoxLayout;
-class QGridLayout;
 
 class InfoWidget : public QWidget
 {
@@ -62,4 +60,3 @@ private:
 };
 
 #endif
-

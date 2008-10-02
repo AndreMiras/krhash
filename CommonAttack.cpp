@@ -21,7 +21,7 @@ void CommonAttack::run()
     while (!this->empty() && cpt > 0 && !stop)
     {
         if(this->contains(algo->hash(&++*currentString)))
-            this->addFoundHash(QString(*currentString));
+            this->addFoundHash(*currentString);
         cpt--;
     }
 }
@@ -39,4 +39,3 @@ int CommonAttack::getHashRate() const
     qDebug("Hash rate: %i h/s", hashRate);
     return hashRate; 
 }
-

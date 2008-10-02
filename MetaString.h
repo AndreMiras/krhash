@@ -1,22 +1,7 @@
 /*
  * Class which allow to compute a String easly
  * TODO:
- *      - Implement charset setting, constructor...
  *      - qSort() charset to find char++ easily
- *      - minValue shoud be a attribut more than a method which takes time 
- *      - default constructor, default values...
- *
- *
- * WARNING: FIXME
- *      - !! Create a method "reconstruct()" called after we alterate a String
- *          using a setter.
- *          For instance if we change the password range before we change
- *          the userCharset(0) the array will be fill up with the old charset
- *          value which is wrong.
- *          So the "reconstruct()" method should recall all the methods in a right
- *          Order after we changed one of this setters
- *
- *
  */
 
 #ifndef METASTRING_H_
@@ -35,7 +20,7 @@
 
 using namespace std;
 
-class MetaString : /* public QByteArray */  public AbstractString
+class MetaString : public AbstractString
 {
 public:
     /*
@@ -50,8 +35,6 @@ public:
      */
 
     // FIXME: could find a better conception
-//    MetaString(const char* str = "a");
-//    MetaString(const char* str);
     MetaString();
 //    MetaString(const QByteArray & other);
     
@@ -110,12 +93,11 @@ private:
      * currentWord="blabla"
      * *lastindex = "1,6,0,1,6,0"
      */
-    // FIXME[cleaning]:    size of lastIndex should be MaxSizeToCrackValue
+    // FIXME[cleaning]: hardcoded value, size of lastIndex should be MaxSizeToCrackValue
     int lastIndex[7];
 
     /*
-     * TODO:    defaultCharset should be short and then return the first value
-     *
+     * TODO:    userCharset should be sorted by ascii code
      */
     const char minValue() const;
     char *pData;

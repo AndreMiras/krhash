@@ -1,7 +1,5 @@
 #include "InfoWidget.h"
 
-#include <QtGui>
-
 
 InfoWidget::InfoWidget(QWidget *parent) : QWidget(parent)
 {
@@ -93,4 +91,3 @@ void InfoWidget::setHashRate(int rate)
 {
     hashRateValueLabel->setText((QString("%1 h/s").arg(rate)));
 }
-

@@ -53,7 +53,6 @@ private slots:
 //    void toggleCrackingButtonText();
     void toggleCracking();
     void appendHash();
-    void selectMode(int);
     void createAttack();
 
 

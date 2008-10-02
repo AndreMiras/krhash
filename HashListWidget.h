@@ -6,15 +6,10 @@
  *      - expand the QListWidgetItem vertically when resizing the window
  *      - Action, for instance :
  *          - Select :
- *              - all
  *              - cracked
  *              - uncracked
  *          - Export :
  *              - selected
- *          - Remove :
- *              - selected
- *              - support supp key as well
- *
  *
  */
 
@@ -23,7 +18,6 @@
 #ifndef HASHLISTWIDGET_H
 #define HASHLISTWIDGET_H
 
-#include <QWidget>
 #include <QListWidget>
 
 #include "AbstractAttack.h"
@@ -34,6 +28,7 @@ class QListWidgetItem;
 class QFile;
 class QAction;
 class QShortcut;
+class QWidget;
 
 class HashListWidget : public QListWidget
 {

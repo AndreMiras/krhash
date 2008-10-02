@@ -10,8 +10,6 @@
 #include "AbstractAlgo.h"
 
 #include <QByteArray>
-#include <QString>
-
 #include <QCryptographicHash>
 
 #include <openssl/md2.h>

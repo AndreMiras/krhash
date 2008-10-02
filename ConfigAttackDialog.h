@@ -11,7 +11,6 @@
 #ifndef CONFIGATTACKDIALOG_H
 #define CONFIGATTACKDIALOG_H
 #include <QDialog>
-#include <QFile>
 
 #include "ConfigBruteForceWidget.h"
 #include "ConfigAbstractAttackWidget.h"
@@ -65,4 +64,3 @@ private:
 };
 
 #endif
-

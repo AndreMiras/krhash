@@ -1,8 +1,4 @@
 #include "AbstractAlgo.h"
 
-
-AbstractAlgo::AbstractAlgo()
-{
-    std::cout << "AbstractAlgo Constructor: " << std::endl;
-}
-
+AbstractAlgo::AbstractAlgo() { }
+AbstractAlgo::~AbstractAlgo() { }
