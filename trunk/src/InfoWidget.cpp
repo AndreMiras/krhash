@@ -23,14 +23,14 @@ void InfoWidget::createInfoWidget()
     algoValueLabel = new QLabel();
     methodLabel = new QLabel(tr("Method:"));
     methodValueLabel = new QLabel();
-    totalHashLabel = new QLabel(tr("Total hash:"));
+    totalHashLabel = new QLabel(tr("Total:"));
     totalHashValueLabel = new QLabel("0");
-    foundHashLabel = new QLabel(tr("Found hash:"));
+    foundHashLabel = new QLabel(tr("Found:"));
     foundHashValueLabel = new QLabel("0");
     hashRateLabel = new QLabel(tr("Hash rate:"));
     hashRateValueLabel = new QLabel();
     hashRateValueLabel->setText("0 h/s");
-    advancementLabel = new QLabel(tr("Advancement:"));
+    advancementLabel = new QLabel(tr("Progress:"));
     advancementValueLabel = new QLabel();
     advancementValueLabel->setText("0%");
 

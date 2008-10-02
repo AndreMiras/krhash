@@ -28,7 +28,7 @@ void CommonAttack::run()
 
 int CommonAttack::getAdvancement() const
 {
-    int adv = int (100.0 * ( float(currentString->total() - cpt) / float(currentString->total()) ));
+    int adv = int (100.0 * round( float(currentString->total() - cpt) / float(currentString->total()) ));
     return adv; 
 }
 

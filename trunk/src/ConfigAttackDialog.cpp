@@ -55,7 +55,6 @@ void ConfigAttackDialog::createConfigAttackDialog()
     methodCombobox = new QComboBox();
     methodCombobox->addItem(tr("Dictionary"));
     methodCombobox->addItem(tr("Brute Force"));
-    methodCombobox->addItem(tr("*Vuln* Based"));
     methodCombobox->setCurrentIndex
                     (
                         // FIXME translating

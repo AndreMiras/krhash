@@ -150,8 +150,7 @@ private:
     virtual int getHashRate() const;
 
 private slots:
-    void updateAdvancement() const;
-    void updateHashRate() const;
+    void updateStatus() const;
 };
 
 #endif /*ABSTRACTATTACK_H_*/
