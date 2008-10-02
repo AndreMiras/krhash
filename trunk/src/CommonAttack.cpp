@@ -28,8 +28,7 @@ void CommonAttack::run()
 
 int CommonAttack::getAdvancement() const
 {
-    int adv = int (100.0 * round( float(currentString->total() - cpt) / float(currentString->total()) ));
-    return adv; 
+    return (int(100.0 * ( float(currentString->total() - cpt) / float(currentString->total()) ))); 
 }
 
 // TODO: better having an average rate or a *realtime* ?
