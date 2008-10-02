@@ -7,12 +7,12 @@
 
 #ifndef CONFIGABSTRACTATTACKWIDGET_H
 #define CONFIGABSTRACTATTACKWIDGET_H
+
 #include <QWidget>
 
 #include "AbstractAttack.h"
 
 #include <iostream>
-//#include <QGroupBox>
 
 
 class ConfigAbstractAttackWidget : public QWidget
@@ -20,18 +20,9 @@ class ConfigAbstractAttackWidget : public QWidget
     Q_OBJECT
 
 public:
-//    ConfigAbstractAttackWidget(AbstractAttack* attack, AbstractAlgo* algo, QWidget* parent = 0);
     ConfigAbstractAttackWidget(QWidget* parent = 0);
     virtual void writeSettings() = 0;
-
-//public slots:
-
-signals:
-    void accepted();
-
-private:
 
 };
 
 #endif
-

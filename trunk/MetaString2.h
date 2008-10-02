@@ -45,8 +45,6 @@ public:
 
     ~MetaString2();
 
-// FIXME[cleaning]: the verif is done before so doesn't need a bool really
-    bool setDictionary(const QString & name);
 
     /*
      * Note:
@@ -60,14 +58,8 @@ public:
 
     /*
      * a Qt method for that (return number of lines) I guess but didn't find it yet
-     *
      */
     double computeTotal() const;
-
-void generatedFrom(const QByteArray fileName);
-
-    void startAt(int line);
-    void stopAt(int line);
 
 protected:
 
@@ -78,8 +70,9 @@ private:
 
     void appendAll();
     void init();
+    // FIXME[cleaning]: the verif should be done before so do really need to return a bool
+    bool setDictionary(const QString & name);
 
 };
 
 #endif /*METASTRING2_H_*/
-

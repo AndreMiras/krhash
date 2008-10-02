@@ -28,7 +28,6 @@ MainWindow::MainWindow()
     createConnections();
 
     QGridLayout *mainLayout = new QGridLayout;
-    QHBoxLayout *vertLayout = new QHBoxLayout;
 //    layout->setMargin(5);
 
     mainLayout->addWidget(addSingleHashGroupBox, 0, 0, 1, 1);
@@ -318,11 +317,3 @@ void MainWindow::createPushButtons()
     // quitButton = new QPushButton(tr("Quit"));
     // quitButton->setAutoDefault(false);    
 }
-
-
-void MainWindow::selectMode(int nMode)
-{
-
-}
-
-

@@ -13,8 +13,6 @@
 #include "AbstractAlgo.h"
 
 #include <QByteArray>
-#include <QString>
-
 #include <QCryptographicHash>
 
 #include <openssl/sha.h>

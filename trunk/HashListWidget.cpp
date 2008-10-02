@@ -6,9 +6,7 @@
 // HashListWidget::HashListWidget(QWidget *parent) : QWidget(parent)
 HashListWidget::HashListWidget(QWidget *parent) : QListWidget(parent)
 {
-    std::cout << "HashListWidget::Construct" << std::endl;
     attack = NULL;
-// TODO: what the best ?  
     // this->setSelectionMode(QAbstractItemView::MultiSelection);
     this->setSelectionMode(QAbstractItemView::ExtendedSelection);
     this->setMinimumSize(QSize(350, 100));
@@ -16,10 +14,7 @@ HashListWidget::HashListWidget(QWidget *parent) : QListWidget(parent)
 //    setEnabled(false);
 }
 
-HashListWidget::~HashListWidget()
-{
-    std::cout << "HashListWidget::Destruct" << std::endl;
-}
+HashListWidget::~HashListWidget() { }
 
 void HashListWidget::setAttack(AbstractAttack* _attack)
 {
@@ -117,15 +112,10 @@ void HashListWidget::removeHash(const QByteArray & hash)
 
 void HashListWidget::addHashFromFile(QFile & hashFile)
 {
-//     if (!hashFile.open(QFile::ReadOnly | QFile::Text))
-//         return false;
-
     hashFile.open(QFile::ReadOnly | QFile::Text);
     QTextStream in(&hashFile);
     while (!in.atEnd())
         this->addHash(in.readLine().toAscii());
-
-//    return TRUE; 
 }
 
 
@@ -155,5 +145,3 @@ void HashListWidget::removeAllHashes()
     for (int i = this->count() - 1; i >= 0; --i)
         removeHash(this->item(i)->whatsThis().toAscii());
 }
-
-
