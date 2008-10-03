@@ -1,0 +1,32 @@
+= Release Notes =
+
+
+== Implemented Hashing Algorithms ==
+    - md2
+    - sha0
+    - lm
+    - ntlm
+
+
+== User Interface ==
+    - import hashes from file
+    - export cracked hashes to file
+    - added checkboxes for setting up the charset on brute force
+    - display current hash rate (cracked hash per second)
+
+
+== Fixed Issues ==
+    - fixed memory leak on brute force attack setup
+    - fixed #1: total iteration precomputing
+    - fixed #12: segfault when a hash provided in upper case is cracked
+    - fixed #9: random segfault when cracking process goes to fast (e.g. big dictionary attack)
+    - fixed custom user charset didn't work properly
+    - fixed 0-byte issue on add/remove hash
+
+
+== Misc ==
+    - new cracking progress implementation
+    - cracking settings saved (e.g. charset, path to dictionary)
+    - added documentation
+    - created "Hash Cracking Techniques" (http://code.google.com/p/krhash/wiki/HashCrackingTechniques) wiki page
+    - created "Hashing Algorithms" (http://code.google.com/p/krhash/wiki/HashingAlgorithms) wiki page
