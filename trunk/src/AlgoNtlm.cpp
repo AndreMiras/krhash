@@ -23,8 +23,8 @@ QByteArray AlgoNtlm::hash(const QByteArray* data) const
     int   len = data->size();
     // unsigned char  nt_pw[2*len];
     char  nt_pw[2*len];
-    // memset(nt_pw, 0, sizeof(nt_pw));
-    bzero(nt_pw, sizeof(nt_pw));
+    memset(nt_pw, 0, sizeof(nt_pw));
+    // bzero(nt_pw, sizeof(nt_pw));
     for (int idx=0; idx < len; idx++)
     {
         nt_pw[2*idx]   = data->at(idx);
