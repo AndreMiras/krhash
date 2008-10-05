@@ -45,7 +45,7 @@ QListWidgetItem* HashListWidget::createHashItem(const QByteArray & hashHex)
 
     hashItem = new QListWidgetItem(hashHex);
     hashItem->setText(hashHex);
-    hashItem->setWhatsThis(hashHex);
+    hashItem->setWhatsThis(hashHex.toLower());
     hashItem->setBackground(QBrush(QColor(Qt::blue)));
     return hashItem;
 }
