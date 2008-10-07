@@ -13,13 +13,15 @@ Or checkout the code:
 http://code.google.com/p/krhash/source/checkout
 
 Here is a quick list of the dependencies:
-    - Qt lib (trolltech) 
-    - openssl
+    - Qt4 lib (trolltech) 
+    - ssl library (OpenSSL)
+    - MinGW (for Windows)
 
 
 == Compiling the sources ==
 
 $ cd src/
+$ qmake
 $ make
 
 
