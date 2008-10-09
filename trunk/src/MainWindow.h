@@ -25,8 +25,7 @@
 #include "InfoWidget.h"
 #include "ConfigAttackDialog.h"
 
-#include <iostream>
-
+#include <QDebug>
 #include <QMainWindow>
 
 

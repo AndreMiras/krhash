@@ -24,10 +24,10 @@ void ConfigAttackDialog::writeSettings()
 {
     QSettings settings("u54", "KrHash");
     QString sett(algoCombobox->itemText(algoCombobox->currentIndex()));
-    std::cout << "Writting Settings: " << qPrintable(sett) << std::endl;
+    qDebug() << "Writting Settings: " << qPrintable(sett);
     settings.setValue("Algo", sett);
     sett = methodCombobox->itemText(methodCombobox->currentIndex());
-    std::cout << "Writting Settings: " << qPrintable(sett) << std::endl;
+    qDebug() << "Writting Settings: " << qPrintable(sett);
     settings.setValue("Method", sett);
     configMethodWidgetList->at(methodCombobox->currentIndex())->writeSettings();
 }

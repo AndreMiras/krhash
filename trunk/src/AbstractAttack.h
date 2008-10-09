@@ -12,8 +12,7 @@
 
 #include "AbstractAlgo.h"
 
-#include <iostream>
-
+#include <QDebug>
 #include <QThread>
 #include <QString>
 #include <QList>
@@ -52,17 +51,6 @@ void addHash(const QList<QByteArray> & hashList);
 inline void removeHash(const QByteArray & hash)
 // { this->remove(algo->formatHash(hash)); }
 { this->remove(hash); }
-/*
-{
-    if (this->remove(algo->formatHash(hash)))
-        std::cout << "[" << qPrintable(QString(hash)) << "]"
-        << " removed!" << std::endl;
-    else
-        std::cout << "Error while trying to remove ["
-        << qPrintable(QString(hash)) << "]" << std::endl;
-        
-}
-*/
 
 /*
  * Note:    For debugging purpose

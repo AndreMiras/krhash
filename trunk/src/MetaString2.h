@@ -17,17 +17,13 @@
 
 #include "AbstractString.h"
 
-#include <iostream>
-#include <stdio.h>
-#include <string>
-
+#include <QDebug>
 #include <QByteArray>
 #include <QString>
 #include <QFile>
 #include <QTextStream>
 #include <QSettings>
 
-using namespace std;
 
 class MetaString2 : public AbstractString
 {

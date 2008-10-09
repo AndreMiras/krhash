@@ -10,13 +10,14 @@
 
 #ifndef CONFIGATTACKDIALOG_H
 #define CONFIGATTACKDIALOG_H
+
+#include <QDebug>
 #include <QDialog>
 
 #include "ConfigBruteForceWidget.h"
 #include "ConfigAbstractAttackWidget.h"
 #include "ConfigDictionaryWidget.h"
 
-#include <iostream>
 //#include <QGroupBox>
 
 // class QGroupBox;
