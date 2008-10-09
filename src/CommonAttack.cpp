@@ -7,7 +7,7 @@ CommonAttack::CommonAttack() : AbstractAttack()
 
 CommonAttack::~CommonAttack()
 {
-    std::cout << "CommonAttack::Destruct" << std::endl;
+    qDebug() << "CommonAttack::Destruct";
 }
 
 void CommonAttack::run()
@@ -17,7 +17,7 @@ void CommonAttack::run()
     time->start();
     // perf improvement
     // FIXME[cleaning/performances]: should avoid stop test and use QThread properly instead
-    std::cout << "cpt: " << cpt << std::endl;
+    qDebug() << "cpt: " << cpt;
     while (!this->empty() && cpt > 0 && !stop)
     {
         if(this->contains(algo->hash(&++*currentString)))

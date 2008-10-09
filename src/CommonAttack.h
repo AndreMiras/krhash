@@ -10,9 +10,7 @@
 #include "AbstractAttack.h"
 #include "AbstractString.h"
 
-#include <iostream>
-#include <math.h>
-
+#include <QDebug>
 #include <QTime>
 
 class CommonAttack : public AbstractAttack

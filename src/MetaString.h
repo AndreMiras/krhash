@@ -9,11 +9,9 @@
 
 #include "AbstractString.h"
 
-#include <iostream>
 #include <math.h>
-#include <stdio.h>
-#include <string>
 
+#include <QDebug>
 #include <QByteArray>
 #include <QString>
 #include <QSettings>

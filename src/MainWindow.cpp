@@ -143,7 +143,7 @@ void MainWindow::toggleCracking()
     }
     else
     {
-        std::cout << "Stop cracking" << std::endl;
+        qDebug() << "Stop cracking";
         toggleCrackingButton->setText(tr("Start"));
         // FIXME[cleaning]: use quit() and QEventLoop instead
         // attack->quit();
@@ -178,7 +178,7 @@ void MainWindow::createAttack()
     QList<QByteArray> tmpHashList;
     if ( (attack != NULL) && (! attack->empty()))
     {
-        std::cout << "Reconstructing using uncracked" << std::endl;
+        qDebug() << "Reconstructing using uncracked";
         tmpHashList += attack->notFound();
     }
 

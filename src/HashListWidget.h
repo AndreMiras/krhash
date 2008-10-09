@@ -18,11 +18,11 @@
 #ifndef HASHLISTWIDGET_H
 #define HASHLISTWIDGET_H
 
+#include <QDebug>
 #include <QListWidget>
 
 #include "AbstractAttack.h"
 
-#include <iostream>
 
 class QListWidgetItem;
 class QFile;

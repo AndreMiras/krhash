@@ -23,13 +23,13 @@ AbstractAttack::AbstractAttack(AbstractAlgo * algo) : QSet<QByteArray>()
 
 AbstractAttack::~AbstractAttack()
 {
-    std::cout << "AbstractAttack::Destruct" << std::endl;
+    qDebug() << "AbstractAttack::Destruct";
 }
 
 void AbstractAttack::addHash(const QByteArray & hash)
 {
     // Then we avoid to transform hash before compare them which is faster for cracking
-    std::cout << "AbstractAttack::addHash(): " << qPrintable(QString(hash)) << std::endl;
+    qDebug() << "AbstractAttack::addHash(): " << qPrintable(QString(hash));
     this->insert(algo->formatHash(hash));
 }
 
@@ -56,8 +56,7 @@ void AbstractAttack::showFound() const
     while (i.hasNext())
     {
         i.next();
-        std::cout << qPrintable(i.key()) << " : " 
-                    << qPrintable(i.value()) << std::endl;
+        qDebug() << qPrintable(i.key()) << " : " << i.value();
     }
 }
 
@@ -92,9 +91,9 @@ QByteArray AbstractAttack::getPlain(const QByteArray & hash) const
     QString plainText = foundHash.value(QString(hash));
     if (!plainText.isEmpty())
         return plainText.toAscii();
-    qWarning("Can't get the plain text corresponding to this hash.\n");
-    qWarning("This is a bug, I guess the cracker didn't have time to write into foundHash Object before we actually read it.\n");
-    qWarning("For hash: %s", hash.toHex());
+    qWarning() << "Can't get the plain text corresponding to this hash."
+    << "This is a bug, I guess the cracker didn't have time to write into foundHash Object before we actually read it."
+    << "For hash: " << hash.toHex();
     return "[KrHash bug]";
     // return foundHash.value(QString(hash)).toAscii();
 }
@@ -111,13 +110,13 @@ QList<QByteArray> AbstractAttack::notFound() const
 
 int AbstractAttack::getAdvancement() const
 {
-    std::cout << "getAdvancement Not Implemented" << std::endl;
+    qWarning() << "getAdvancement Not Implemented";
     return 0;
 }
 
 int AbstractAttack::getHashRate() const
 {
-    std::cout << "getHashRate Not Implemented" << std::endl;
+    qWarning() << "getHashRate Not Implemented";
     return 0;
 }
 

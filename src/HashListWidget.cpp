@@ -64,8 +64,8 @@ void HashListWidget::markHashFound(const QByteArray & hashHex, const QByteArray 
 {
     int i = this->count() - 1;
     QByteArray hash = QByteArray::fromHex(hashHex);
-    // std::cout << "Found (Hex): " << qPrintable(QString(hashHex)) << std::endl;
-    // std::cout << "Found (Plain Text): " << qPrintable(QString(attack->getPlain(hash))) << std::endl;
+    // qDebug() << "Found (Hex): " << qPrintable(QString(hashHex));
+    // qDebug() << "Found (Plain Text): " << qPrintable(QString(attack->getPlain(hash)));
 
     while ( (i >= 0) && (this->item(i)->whatsThis() != hashHex) )
         i--;
@@ -80,16 +80,16 @@ void HashListWidget::markHashItem(const QByteArray & hash, bool cracked)
 
 void HashListWidget::addHash(const QByteArray & hashHex)
 {
-    std::cout << ">Trying to add: " << qPrintable(QString(hashHex));
+    qDebug() << ">Trying to add: " << qPrintable(QString(hashHex));
     if (this->attack->isValid(hashHex))
     {
-        std::cout << " [ok]" << std::endl;
+        qDebug() << " [ok]";
         this->addItem(createHashItem(hashHex));
         attack->addHash(hashHex);
         emit hashAdded();
     }
     else
-        std::cout << " [error]" << std::endl;
+        qDebug() << " [error]";
 }
 
 void HashListWidget::removeHash(const QByteArray & hashHex)
@@ -103,9 +103,7 @@ void HashListWidget::removeHash(const QByteArray & hashHex)
     this->takeItem(i);
     attack->removeHash(hash);
     emit hashRemoved(wasCracked);
-    std::cout << "Trying to remove ["
-    << qPrintable(QString(hashHex))
-    << "]" << std::endl;
+    qDebug() << "Trying to remove [" << qPrintable(QString(hashHex))  << "]";
 }
 
 void HashListWidget::addHashFromFile(QFile & hashFile)
@@ -128,7 +126,7 @@ void HashListWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void HashListWidget::removeSelectedHashes()
 {
-    std::cout << "Removing Selected Hashes" << std::endl;
+    qDebug() << "Removing Selected Hashes";
     QList<QListWidgetItem*> tmpList = this->selectedItems();
     for (int i = tmpList.count() - 1; i >= 0; --i)
         removeHash(tmpList.at(i)->whatsThis().toAscii());
@@ -136,7 +134,7 @@ void HashListWidget::removeSelectedHashes()
 
 void HashListWidget::removeAllHashes()
 {
-    std::cout << "Removing All Hashes" << std::endl;
+    qDebug() << "Removing All Hashes";
     for (int i = this->count() - 1; i >= 0; --i)
         removeHash(this->item(i)->whatsThis().toAscii());
 }

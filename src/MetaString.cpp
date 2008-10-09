@@ -6,7 +6,7 @@ static const char defaultCharset[] = "abcdefghijklmnopqrstuvwxyz";
 
 MetaString::MetaString() : AbstractString() 
 {
-    std::cout << "MetaString::Constructed[Begin]" << std::endl;
+    qDebug() << "MetaString::Constructed[Begin]";
     QSettings settings("u54", "KrHash");
     // const QByteArray MetaString::defaultCharset = QByteArray("abcdefghijklmnopqrstuvwxyz");
     setCharset(settings.value("Charset", defaultCharset).toString().toAscii());
@@ -23,7 +23,7 @@ MetaString::MetaString() : AbstractString()
 
 MetaString::~MetaString()
 {
-    std::cout << "MetaString::Destructed:" << std::endl;
+    qDebug() << "MetaString::Destructed:";
 }
 
 // FIXME: change lastIndex pointer state
@@ -97,22 +97,22 @@ MetaString & MetaString::operator++()
 // FIXME: this computation is not 100 right
 double MetaString::computeTotal() const
 {
-    std::cout << "MetaString::computeTotal(), charsetLength: " << userCharset.length()<< std::endl;
-    std::cout << "MetaString::computeTotal(), maxSize: " << getMaxSize() << std::endl;
-    std::cout << "MetaString::computeTotal(), minSize: " << getMinSize() << std::endl;
-    std::cout << "MetaString::computeTotal(): (" << userCharset.length()
+    qDebug() << "MetaString::computeTotal(), charsetLength: " << userCharset.length();
+    qDebug() << "MetaString::computeTotal(), maxSize: " << getMaxSize();
+    qDebug() << "MetaString::computeTotal(), minSize: " << getMinSize();
+    qDebug() << "MetaString::computeTotal(): (" << userCharset.length()
                 << "^" << getMaxSize() << ") - ("
-                << userCharset.length() << "^" << getMinSize() << ")" << std::endl;
+                << userCharset.length() << "^" << getMinSize() << ")";
     double iteration = ( pow(userCharset.length(), getMaxSize())
             - pow(userCharset.length(), getMinSize()) );
-    std::cout << "MetaString::computeTotal(), iterations: " << iteration << std::endl;
+    qDebug() << "MetaString::computeTotal(), iterations: " << iteration;
     return iteration;
 }
 
 void MetaString::setCharset(const QByteArray charset)
 {
     userCharset = QByteArray(charset);
-    std::cout << "Charset: " << qPrintable(QString(charset)) << std::endl;
+    qDebug() << "Charset: " << qPrintable(QString(charset));
     updateString();
 }
 

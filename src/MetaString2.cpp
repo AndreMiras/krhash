@@ -27,7 +27,7 @@ bool MetaString2::setDictionary(const QString & fileName)
 
 MetaString2::~MetaString2()
 {
-    std::cout << "MetaString2::Destructed:" << std::endl;
+    qDebug() << "MetaString2::Destructed:";
 }
 
 void MetaString2::appendAll()
